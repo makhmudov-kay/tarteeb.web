@@ -1,0 +1,103 @@
+<div class="table-data">
+  <nz-table
+    #rowSelectionTable
+    nzShowPagination
+    nzShowSizeChanger
+    [nzData]="data"
+    [nzLoading]="isLoading"
+    (nzCurrentPageDataChange)="onCurrentPageDataChange($event)"
+  >
+    <thead>
+      <tr>
+        <th nzColumnKey="id" nzWidth="70px">№</th>
+        <th nzColumnKey="student">Student</th>
+        <th nzColumnKey="amount">Amount</th>
+        <th nzColumnKey="status">Status</th>
+        <th nzWidth="220px">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of rowSelectionTable.data; let id = index">
+        <td>
+          {{
+            (rowSelectionTable.nzPageIndex - 1) * rowSelectionTable.nzPageSize +
+              id +
+              1
+          }}
+        </td>
+        <td>{{ data.Client.LastName + " " + data.Client.FirstName }}</td>
+        <td>{{ data.Total }}</td>
+        <td>
+          <svg-check
+            [nz-tooltip]="data.IsPaid ? 'Paid' : 'Not paid'"
+            *ngIf="data.IsPaid"
+            class="d-flex"
+          ></svg-check>
+          <svg-cross
+            [nz-tooltip]="data.IsPaid ? 'Paid' : 'Not paid'"
+            *ngIf="!data.IsPaid"
+            class="d-flex"
+          ></svg-cross>
+        </td>
+        <td>
+          <div class="actions-btn">
+            <button nz-button nzType="default" [routerLink]="[data.Id]">
+              <span nz-icon nzType="eye" nzTheme="outline"></span>View
+            </button>
+            <ng-container *ngIf="!data.IsPaid; else notPaid">
+              <button
+                nz-button
+                nzType="primary"
+                nz-button
+                nzType="default"
+                (click)="openPaymentModal(data)"
+              >
+                $ Pay
+              </button></ng-container
+            >
+            <ng-template #notPaid>
+              <button
+                nz-button
+                nzType="primary"
+                nz-button
+                nzType="default"
+                nz-popconfirm
+                nzPopconfirmTitle="Confirm cancellation of invoice payment?"
+                nzPopconfirmPlacement="bottom"
+                (nzOnConfirm)="cancelPaid(data)"
+              >
+                <span nz-icon nzType="close" nzTheme="outline"></span>
+                Cancel
+              </button>
+            </ng-template>
+
+            <button
+              nz-button
+              nzType="default"
+              nz-dropdown
+              nzTrigger="click"
+              [nzDropdownMenu]="menu"
+            >
+              <span nz-icon nzType="ellipsis" nzTheme="outline"></span>
+            </button>
+
+            <!-- DROPDOWN MENU -->
+            <nz-dropdown-menu #menu="nzDropdownMenu">
+              <ul nz-menu>
+                <li
+                  nz-popconfirm
+                  nzPopconfirmTitle="Are you sure delete this invoice?"
+                  nzPopconfirmPlacement="bottom"
+                  (nzOnConfirm)="confirm(data.Id)"
+                  nz-menu-item
+                >
+                  Delete
+                </li>
+              </ul>
+            </nz-dropdown-menu>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

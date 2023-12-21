@@ -1,0 +1,111 @@
+<nz-modal
+  [(nzVisible)]="isVisible"
+  [nzFooter]="null"
+  [nzClosable]="false"
+  (nzOnCancel)="handleCancel()"
+>
+  <ng-container *nzModalContent>
+    <div class="modal">
+      <!-- MODAL HEADER -->
+      <div class="modal-header">
+        <h3>Pay</h3>
+        <span (click)="handleCancel()"><svg-close></svg-close></span>
+      </div>
+
+      <!-- MODAL CONTENT -->
+      <div class="modal-content">
+        <div class="modal-content__info">
+          <p>
+            <span>Full name:</span
+            ><span>{{
+              invoice.Client.FirstName + " " + invoice.Client.LastName
+            }}</span>
+          </p>
+          <p>
+            <span>Phone:</span
+            ><span
+              ><svg-phone class="d-flex"></svg-phone>
+              {{ invoice.Client.PhoneNumber }}</span
+            >
+          </p>
+          <p>
+            <span>Total:</span> <span>{{ invoice.Total | separate }} uzs</span>
+          </p>
+        </div>
+
+        <form class="modal-content__inputs" [formGroup]="form">
+          <div
+            class="modal-content__inputs__validation"
+            [ngClass]="{
+              opacity:
+                form.controls['amount'].touched &&
+                form.controls['amount'].invalid
+            }"
+          >
+            <small class="error">Please, enter amount*</small>
+          </div>
+          <label (click)="isFullPayChangeHandler(false)">
+            <div class="label-radio">
+              <input #radioPartial type="radio" name="pay" checked />
+              <span class="checkmark-radio">
+                <span><svg-blue-check class="d-flex"></svg-blue-check></span>
+              </span>
+              <span class="label-radio__text">Partial payment</span>
+            </div>
+            <div class="label-input">
+              <input
+                #textInput
+                (focus)="radioPartial.checked = true"
+                type="text"
+                formControlName="amount"
+                nz-input
+              />
+            </div>
+          </label>
+          <label (click)="isFullPayChangeHandler(true)">
+            <div class="label-radio">
+              <input type="radio" name="pay" />
+              <span class="checkmark-radio">
+                <span><svg-blue-check class="d-flex"></svg-blue-check></span>
+              </span>
+              <span class="label-radio__text">Full payment</span>
+            </div>
+            <div class="label-info">
+              <p>{{ invoice.Total - invoice.PaidAmount | separate }} uzs</p>
+            </div>
+          </label>
+        </form>
+
+        <div class="modal-content__selector selector-padding-0">
+          <p>Payment method*</p>
+          <app-selector
+            [selectorData]="paymentMethodOptions"
+            [nzWidth]="true"
+            (selectedValueChange)="selectedPaymentMethod($event)"
+          ></app-selector>
+        </div>
+      </div>
+
+      <!-- MODAL FOOTER -->
+      <div class="modal-footer">
+        <button
+          nz-button
+          nzType="default"
+          nzSize="large"
+          (click)="handleCancel()"
+        >
+          Cancel
+        </button>
+        <button
+          nz-button
+          nzType="primary"
+          nzSize="large"
+          (click)="submitPay()"
+          [nzLoading]="isLoading"
+        >
+          Pay
+        </button>
+      </div>
+    </div>
+  </ng-container>
+</nz-modal>

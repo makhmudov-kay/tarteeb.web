@@ -1,0 +1,77 @@
+.font(@color: #477AB5, @fontFamily: Montserrat-Alt, @fontSize: 16px, @lineHeight: 120%, @letterSpacing) {
+    color: @color;
+    font-family: @fontFamily;
+    font-size: @fontSize;
+    line-height: @lineHeight;
+    letter-spacing: @letterSpacing;
+}
+
+.d {
+    &-flex {
+        display: flex;
+    }
+
+    &-block {
+        display: block;
+    }
+
+    &-inline-block {
+        display: inline-block;
+    }
+}
+
+.f {
+    &-grow {
+        flex-grow: 1;
+    }
+}
+
+.justify-content {
+    &-end {
+        justify-content: end;
+    }
+
+    &-center {
+        justify-content: center;
+    }
+
+    &-between {
+        justify-content: space-between;
+    }
+}
+
+.align-items {
+    &-center {
+        align-items: center;
+    }
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.mt-60 {
+    margin-top: 60px;
+}
+
+.mt-30 {
+    margin-top: 30px;
+}
+
+
+.date {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    // position: fixed;
+    // top: 0;
+    // z-index: 1;
+
+    span {
+        padding: 8px 16px;
+        background: #D2EEEB;
+        border-radius: 16px;
+        .font(#7D7D7D, Montserrat-Alt, 10px, 120%, 0.2px);
+        align-items: center;
+    }
+}

@@ -1,0 +1,15 @@
+<form [formGroup]="form" class="week-day-list">
+  <label class="week-day-selector" *ngFor="let day of dayOfWeek">
+    <input
+      [type]="type"
+      name="singleDay"
+      [(ngModel)]="dayPicker"
+      (ngModelChange)="selectedDay(day)"
+      [ngModelOptions]="{ standalone: true }"
+    />
+    <span class="check-marker">
+      <span *ngIf="type === 'radio'">{{ day.date }}</span>
+      <span>{{ day.day }}</span>
+    </span>
+  </label>
+</form>

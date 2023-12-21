@@ -1,0 +1,48 @@
+<div class="login">
+  <div class="login-block">
+    <div class="login-block__img">
+      <img src="./assets/images/login.jpg" alt="img" />
+    </div>
+
+    <h4 class="login-block__title">Sign In</h4>
+    <form
+      nz-form
+      [formGroup]="validateForm"
+      class="login-form"
+      (ngSubmit)="submitForm()"
+    >
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please, enter your email">
+          <nz-input-group nzPrefixIcon="user">
+            <input
+              type="email"
+              nz-input
+              formControlName="mail"
+              placeholder="Email"
+            />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please, enter your password">
+          <nz-input-group nzPrefixIcon="lock">
+            <input
+              type="password"
+              nz-input
+              formControlName="password"
+              placeholder="Password"
+            />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <button
+        nz-button
+        [nzLoading]="isLoading"
+        class="login-form-button login-form-margin"
+        [nzType]="'primary'"
+      >
+        Log in
+      </button>
+    </form>
+  </div>
+</div>

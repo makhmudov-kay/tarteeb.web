@@ -1,0 +1,40 @@
+<div class="statistic-card">
+  <div class="statistic-card__left">
+    <div class="statistic-card__title">{{ cardInfo.title }}</div>
+    <div class="statistic-card__amount">
+      <span class="statistic-card__amount__num"
+        >{{ cardInfo.amount | separate: cardInfo.isPercent }}
+        {{ cardInfo.isCost ? "UZS" : "" }}</span
+      >
+      <span
+        class="statistic-card__amount__changes green"
+        *ngIf="cardInfo.changes"
+        ><span nz-icon nzType="arrow-up" [nzRotate]="0" nzTheme="outline"></span
+        >{{ cardInfo.changes }}</span
+      >
+    </div>
+    <div class="statistic-card__description">
+      <span>{{ cardInfo.description }}</span>
+    </div>
+  </div>
+  <div class="statistic-card__right">
+    <div [ngSwitch]="cardInfo.icon">
+      <div *ngSwitchCase="'income'"><svg-invoices></svg-invoices></div>
+      <div *ngSwitchCase="'courses'">
+        <svg-courses-statistic></svg-courses-statistic>
+      </div>
+      <div *ngSwitchCase="'groups'">
+        <svg-groups width="32" height="32" color="#477AB5"></svg-groups>
+      </div>
+      <div *ngSwitchCase="'students'">
+        <svg-students width="32" height="32" color="#477AB5"></svg-students>
+      </div>
+      <div *ngSwitchCase="'statistic'">
+        <svg-students width="32" height="32" color="#477AB5"></svg-students>
+      </div>
+      <div *ngSwitchDefault>
+        <svg-students width="32" height="32" color="#477AB5"></svg-students>
+      </div>
+    </div>
+  </div>
+</div>

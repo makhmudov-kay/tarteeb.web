@@ -1,0 +1,146 @@
+.menu {
+    &__item {
+        color: #D2EEEB;
+        font-family: Montserrat-Alt;
+        // font-size: 16px; from figma
+        font-size: 14px;
+        letter-spacing: 0.32px;
+        display: flex;
+        align-items: center;
+        // padding: 16px 0;
+        padding: 11px 0;
+        padding-left: 64px;
+        cursor: pointer;
+        transition: 0.4s;
+
+        &.isCollapsed {
+            span {
+                display: none;
+            }
+        }
+
+        ::ng-deep {
+            svg {
+                path {
+                    fill: #D2EEEB;
+                    transition: 0.4s;
+                }
+
+                rect {
+                    fill: #D2EEEB;
+                    transition: 0.4s;
+                }
+            }
+        }
+
+        &.active {
+            background: #D2EEEB;
+            color: #477AB5;
+
+            ::ng-deep {
+                svg {
+                    path {
+                        fill: #477AB5;
+                    }
+
+                    rect {
+                        fill: #477AB5;
+                    }
+                }
+            }
+        }
+
+        &:hover {
+            background: #D2EEEB;
+            color: #477AB5;
+
+            ::ng-deep {
+                svg {
+                    path {
+                        fill: #477AB5;
+                    }
+
+                    rect {
+                        fill: #477AB5;
+                    }
+                }
+            }
+        }
+
+        span {
+            display: inline-block;
+            margin-left: 20px;
+        }
+
+        &.submenu {
+            position: relative;
+
+            &:hover {
+                .menu__item__submenu {
+                    opacity: 1;
+                    z-index: 10;
+                }
+            }
+
+            .menu__item__submenu {
+                position: absolute;
+                top: 50px;
+                left: 80px;
+                display: flex;
+                flex-direction: column;
+                // gap: 20px;
+                gap: 8px;
+                opacity: 0;
+                transition: 0.4s;
+                z-index: -1;
+
+                .submenu__item {
+                    padding: 9px 16px;
+                    border-radius: 8px;
+                    background: #FBFBFB;
+                    box-shadow: 4px 4px 16px 0px rgba(0, 0, 0, 0.28);
+                    display: flex;
+                    align-items: center;
+                    transition: 0.4s;
+
+                    ::ng-deep {
+                        svg {
+                            path {
+                                fill: #0096FA;
+                                transition: 0.4s;
+                            }
+                        }
+                    }
+
+                    &:hover {
+                        border-radius: 8px;
+                        background: #D2EEEB;
+                        box-shadow: 4px 4px 16px 0px rgba(0, 0, 0, 0.28);
+
+                        ::ng-deep {
+                            svg {
+                                path {
+                                    fill: #477AB5;
+                                    transition: 0.4s;
+                                }
+                            }
+                        }
+
+                        span {
+                            color: #477AB5;
+                        }
+                    }
+
+                    span {
+                        color: #0096FA;
+                        font-family: Montserrat-Alt;
+                        font-size: 14px;
+                        letter-spacing: 0.28px;
+                        display: inline-block;
+                        margin-left: 20px;
+                    }
+                }
+            }
+        }
+    }
+}

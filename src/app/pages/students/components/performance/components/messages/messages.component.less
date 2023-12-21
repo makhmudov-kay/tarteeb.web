@@ -1,0 +1,58 @@
+@import url('../../../../../../../assets/utils/_global.less');
+
+.messages {
+    flex-grow: 1;
+    width: 100%;
+    position: relative;
+
+    &__header {
+        display: flex;
+        // align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+
+        &__left {
+            h3 {
+                display: flex;
+                align-items: center;
+                margin-bottom: 20px;
+                .font(#0096FA, Montserrat-Alt, 16px, 120%, 0.32px);
+
+                span {
+                    margin-left: 10px;
+                }
+            }
+
+            p {
+                .font(#477AB5, Lato, 16px, 120%, 0.32px);
+            }
+        }
+    }
+
+    &__window {
+        overflow: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: flex-end;
+        height: 335px;
+        gap: 8px;
+        // position: relative;
+
+        /* width */
+        &::-webkit-scrollbar {
+            width: 3px;
+        }
+
+        /* Track */
+        &::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        /* Handle */
+        &::-webkit-scrollbar-thumb {
+            background: #477AB5;
+            border-radius: 4px;
+        }
+    }
+}

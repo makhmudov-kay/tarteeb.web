@@ -1,0 +1,32 @@
+<div class="invoice__header">
+  <div class="invoice__header__left">
+    <button routerLink="../" class="invoice__header__left__back-btn" *ngIf="btnBack">
+      <svg-dir-arrow class="d-flex"></svg-dir-arrow>
+    </button>
+    <h2 class="title">{{ title }}</h2>
+  </div>
+  <div class="invoice__header__search" *ngIf="searchBar">
+    <app-unversal-search
+      (value)="searchValue.emit($event)"
+      [activeFilter]="activeFilter"
+      (activeFilterChange)="activeFilterChange.emit($event)"
+    ></app-unversal-search>
+  </div>
+  <button
+    class="btn-gradient"
+    (click)="handleEvent.emit()"
+    [disabled]="isLoading"
+  >
+    <ng-container *ngIf="isLoading; else content">
+      <span class="icon-loading">
+        <span nz-icon [nzType]="'loading'"></span>
+      </span>
+    </ng-container>
+
+    <ng-template #content>
+      <ng-content></ng-content>
+    </ng-template>
+
+    <span>{{ btnText }}</span>
+  </button>
+</div>

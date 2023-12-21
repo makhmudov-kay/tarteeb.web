@@ -1,0 +1,17 @@
+<nz-layout>
+  <nz-sider
+    *ngIf="!isAuthPage"
+    [nzWidth]="280"
+    [nzCollapsedWidth]="152"
+    nzCollapsible
+    [nzCollapsed]="isCollapsed"
+    [nzTrigger]="null"
+    ><app-sidebar [(isCollapsed)]="isCollapsed"></app-sidebar
+  ></nz-sider>
+  <nz-layout>
+    <nz-content
+      ><div class="content" [ngClass]="{ padding: !isAuthPage }">
+        <router-outlet></router-outlet></div
+    ></nz-content>
+  </nz-layout>
+</nz-layout>

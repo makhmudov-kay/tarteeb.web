@@ -1,0 +1,43 @@
+<div class="messages">
+  <ng-container *ngIf="messages; else empty">
+    <div class="messages__header">
+      <div class="messages__header__left">
+        <h3><svg-bot class="d-flex"></svg-bot><span>Sent messages</span></h3>
+        <p>{{ messageCount }} messages</p>
+      </div>
+      <div class="messages__header__right">
+        <app-selector
+          [selectorData]="monthesOption"
+          (selectedValueChange)="filterByMonthSelector($event)"
+          [size]="'small'"
+          backgroundColor="#D2EEEB"
+          ><svg-schedule width="12" height="12" class="d-flex"></svg-schedule
+        ></app-selector>
+
+        <!-- <nz-select [ngModel]="monthesOption[0].value" class="customSelector">
+          <nz-option
+            *ngFor="let month of monthesOption"
+            [nzValue]="month.value"
+            [nzLabel]="month.label"
+          ></nz-option>
+        </nz-select> -->
+      </div>
+    </div>
+    <div class="messages__window">
+      <ng-container *ngFor="let date of messages.keys()">
+        <div class="relative">
+          <div class="date">
+            <span>{{ date }}</span>
+          </div>
+          <app-message
+            *ngFor="let message of messages.get(date)"
+            [message]="message"
+          ></app-message>
+        </div>
+      </ng-container>
+    </div>
+  </ng-container>
+  <ng-template #empty>
+    <div class="empty">Messages not found</div>
+  </ng-template>
+</div>

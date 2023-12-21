@@ -1,0 +1,80 @@
+<div class="btn-group d-flex justify-content-between">
+  <button routerLink="../" class="btn-group__back-btn">
+    <svg-dir-arrow class="d-flex"></svg-dir-arrow>
+  </button>
+  <div class="btn-group__actions">
+    <button
+      class="btn btn__light"
+      *ngIf="!invoice.IsPaid; else isPaid"
+      (click)="openPaymentModal()"
+    >
+      <svg-payment class="d-flex"></svg-payment><span>Pay</span>
+    </button>
+    <!-- <button class="btn btn__main">
+    <svg-edit class="d-flex"></svg-edit>
+    <span>Edit</span>
+  </button>
+  <button class="btn btn__m-additional">
+    <svg-file class="d-flex"></svg-file>
+    <span>Download</span>
+  </button>
+  <button class="btn btn-gradient">
+    <svg-print class="d-flex"></svg-print>
+    <span>Print</span>
+  </button> -->
+    <button
+      nz-popconfirm
+      nzPopconfirmTitle="Are you sure delete this task?"
+      nzPopconfirmPlacement="bottom"
+      (nzOnConfirm)="confirmDelete(invoice.Id)"
+      class="btn btn__default"
+      [disabled]="isLoadingDelete"
+    >
+      <ng-container *ngIf="isLoadingDelete; else content">
+        <span class="icon-loading">
+          <span nz-icon [nzType]="'loading'"></span>
+        </span>
+      </ng-container>
+
+      <ng-template #content>
+        <svg-delete class="d-flex"></svg-delete>
+      </ng-template>
+
+      <span>Delete</span>
+    </button>
+  </div>
+</div>
+
+<ng-template #isPaid>
+  <button
+    nz-popconfirm
+    nzPopconfirmTitle="Are you sure delete this task?"
+    nzPopconfirmPlacement="bottom"
+    (nzOnConfirm)="confirmCancel(invoice)"
+    class="btn btn__light"
+    [disabled]="isLoadingPay"
+  >
+    <ng-container *ngIf="isLoadingPay; else content">
+      <span class="icon-loading">
+        <span nz-icon [nzType]="'loading'"></span>
+      </span>
+    </ng-container>
+
+    <ng-template #content>
+      <svg-close class="d-flex"></svg-close>
+    </ng-template>
+
+    <span>Cancel</span>
+  </button>
+</ng-template>
+
+<app-payment-modal
+  [invoice]="invoice"
+  [(isVisible)]="isVisiblePaymentModal"
+  [isFullPay]="isFullPay"
+  (isFullPayChange)="isFullPayChange.emit($event)"
+  [form]="form"
+  (onSubmit)="submitPay.emit()"
+  [paymentMethodOptions]="paymentMethodOptions"
+  [isLoading]="isLoadingPay"
+></app-payment-modal>

@@ -1,0 +1,36 @@
+<nz-modal
+  [(nzVisible)]="isVisible"
+  nzTitle="Add group"
+  (nzOnCancel)="handleCancel()"
+  (nzOnOk)="handleOk()"
+  [nzFooter]="null"
+>
+  <ng-container *nzModalContent>
+    <form nz-form [formGroup]="form">
+      <nz-form-item>
+        <nz-form-label [nzSpan]="24" nzFor="name">Group name *</nz-form-label>
+        <nz-form-control [nzSpan]="24" nzErrorTip="Please, enter group name">
+          <input
+            formControlName="Name"
+            nzSize="large"
+            class="w-100"
+            nz-input
+            type="text"
+            id="name"
+          />
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+    <div class="action-btn">
+      <button
+        [nzLoading]="isLoading"
+        nz-button
+        nzType="primary"
+        nzBlock
+        (click)="submit()"
+      >
+        Save
+      </button>
+    </div>
+  </ng-container>
+</nz-modal>

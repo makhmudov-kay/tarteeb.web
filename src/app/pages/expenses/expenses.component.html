@@ -1,0 +1,24 @@
+<div class="expense">
+  <app-page-header
+    [title]="'Expenses'"
+    [btnText]="'Add expense'"
+  >
+    <svg-plus class="d-flex"></svg-plus>
+  </app-page-header>
+  
+  <div class="expenses__filter" [hidden]="!showFilter">
+    <app-selector
+      [selectorData]="typeIdOption"
+      [selectedValue]="typeIdSelected"
+      (selectedValueChange)="filterByTypeSelector($event)"
+    >
+      <svg-groups class="d-flex"></svg-groups>
+    </app-selector>
+  </div>
+  <div class="expenses__table">
+    <app-expense-list
+      [data]="expenses"
+      [isLoading]="isLoading"
+    ></app-expense-list>
+  </div>
+</div>

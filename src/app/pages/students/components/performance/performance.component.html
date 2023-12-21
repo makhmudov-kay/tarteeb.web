@@ -1,0 +1,42 @@
+<div class="performance">
+  <app-page-header
+    title="Performance"
+    btnText="Recalculate"
+    [searchBar]="false"
+    [btnBack]="true"
+    (handleEvent)="recalculate()"
+  >
+    <svg-calculator class="d-flex"></svg-calculator>
+  </app-page-header>
+
+  <div
+    class="performance__info"
+    *ngIf="studentPerformance$ | async as studentPerformance; else skeleton"
+  >
+    <app-performance-info
+      [studentPerformance]="studentPerformance"
+      [cardsInfo]="cardsInfo"
+      [group]="group"
+      [messages]="messagesByDate"
+      [messageCount]="messages.length"
+      [monthesOption]="monthesOption"
+    ></app-performance-info>
+  </div>
+</div>
+<ng-template #skeleton>
+  <div class="performance__info">
+    <content-loader
+      viewBox="0 0 1111.2 86"
+      [speed]="2"
+      backgroundColor="#d6d6d6"
+      foregroundColor="#ecebeb"
+    >
+      <svg:rect x="97" y="32" rx="0" ry="0" width="0" height="1" />
+      <svg:rect x="0" y="0" rx="16" ry="16" width="1111" height="86" />
+    </content-loader>
+
+    <div class="mt-30">
+      <app-skeleton-statistic-cards></app-skeleton-statistic-cards>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,14 @@
+<div class="lessons">
+  <div class="lessons__header">
+    <app-page-header [title]="'Lessons'" [btnText]="'Add lesson'" (handleEvent)="addLesson()"
+      (searchValue)="searchValue($event)">
+      <svg-plus class="d-flex"></svg-plus></app-page-header>
+  </div>
+  <div class="lessons__filter">
+    <app-lessons-filter (prevWeek)="prevWeek()" (nextWeek)="nextWeek()"
+      [dateOptions]="dateOptions"></app-lessons-filter>
+  </div>
+  <div class="lessons__content">
+    <app-lessons-list [data]="data"></app-lessons-list>
+  </div>
+</div>

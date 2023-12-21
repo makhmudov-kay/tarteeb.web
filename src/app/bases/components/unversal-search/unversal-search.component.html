@@ -1,0 +1,25 @@
+<div class="search-bar">
+  <!-- SEARCH INPUT -->
+  <div class="search-bar__name">
+    <nz-input-group [nzSuffix]="suffixIconSearch">
+      <input
+        type="text"
+        [ngModel]="searchValue"
+        (ngModelChange)="changeSearchValue($event)"
+        nz-input
+        placeholder="Search by name"
+      />
+    </nz-input-group>
+  </div>
+  <ng-template #suffixIconSearch>
+    <svg-search class="d-flex"></svg-search>
+  </ng-template>
+
+  <!-- FILTER -->
+  <div class="search-bar__filter">
+    <a (click)="toggleActive()" [ngClass]="{ active: active || activeFilter }">
+      <svg-filter class="d-flex"></svg-filter>
+      <span>Filter</span>
+    </a>
+  </div>
+</div>

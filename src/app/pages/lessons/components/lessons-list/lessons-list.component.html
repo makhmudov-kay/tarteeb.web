@@ -1,0 +1,67 @@
+<div class="table-data">
+  <nz-table #rowSelectionTable nzShowPagination nzShowSizeChanger [nzData]="data" [nzLoading]="isLoading"
+    (nzCurrentPageDataChange)="onCurrentPageDataChange($event)" [nzScroll]="{ x: '1100px' }">
+    <thead>
+      <tr>
+        <th nzColumnKey="id" nzWidth="90px" nzLeft>№</th>
+        <th nzLeft nzWidth="180px">Date</th>
+        <th nzWidth="180px">Start/End</th>
+        <th nzWidth="230px">Title</th>
+        <th nzWidth="180px">Room</th>
+        <th nzWidth="180px">Teacher</th>
+        <th nzWidth="180px">Group</th>
+        <th nzWidth="315px" nzRight>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of rowSelectionTable.data; let id = index">
+        <td nzLeft>
+          {{
+          (rowSelectionTable.nzPageIndex - 1) * rowSelectionTable.nzPageSize +
+          id +
+          1
+          }}
+        </td>
+        <td nzLeft>{{ data.Date | date: 'dd-MMM, yyyy' }}</td>
+        <td>{{ transformTime(data.StartTime) + "-" + transformTime(data.EndTime) }}</td>
+        <td>
+          {{ data.Title }}
+        </td>
+        <td>
+          {{ data.Room.Name }}
+        </td>
+        <td>
+          {{ data.Teacher.FirstName + ' ' + data.Teacher.LastName}}
+        </td>
+        <td>
+          {{ data.Group.Name }}
+        </td>
+        <td nzRight>
+          <div class="actions-btn">
+            <button nz-button nzType="default" [routerLink]="[data.Id]">
+              <span nz-icon nzType="file-text" nzTheme="outline"></span>Tasks
+            </button>
+
+            <button nz-button nzType="default" [routerLink]="[data.Id]">
+              <span nz-icon nzType="edit" nzTheme="outline"></span>Edit
+            </button>
+
+            <button nz-button nzType="default" nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">
+              <span nz-icon nzType="ellipsis" nzTheme="outline"></span>
+            </button>
+
+            <!-- DROPDOWN MENU -->
+            <nz-dropdown-menu #menu="nzDropdownMenu">
+              <ul nz-menu>
+                <li nz-popconfirm nzPopconfirmTitle="Are you sure delete this invoice?" nzPopconfirmPlacement="bottom"
+                  (nzOnConfirm)="confirm(data.Id)" nz-menu-item>
+                  Delete
+                </li>
+              </ul>
+            </nz-dropdown-menu>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

@@ -1,0 +1,14 @@
+<div class="user" [ngClass]="{ active: isActive }">
+  <div class="user__img">
+    <img
+      src="https://sbcf.fr/wp-content/uploads/2018/03/sbcf-default-avatar.png"
+      alt="avatar"
+    />
+  </div>
+  <div class="user__info">
+    <div class="user__info__fullname">
+      {{ client.firstName }} {{ client.lastName }}
+    </div>
+    <div class="user__info__text">{{ client.phoneNumber }}</div>
+  </div>
+</div>

@@ -1,0 +1,67 @@
+@import url('../../../../../assets/utils/_global.less');
+
+.add-student-modal {
+    &__step {
+        margin-bottom: 30px;
+    }
+
+    &__content {
+        margin-bottom: 30px;
+    }
+
+    &__footer {
+        .steps-action {
+            display: flex;
+            justify-content: flex-end;
+            gap: 24px;
+
+            button {
+                // padding: 12px 36px;
+                border-radius: 16px;
+                padding-left: 36px;
+                padding-right: 36px;
+                font-family: Montserrat-Alt;
+                font-size: 14px;
+                // border: none;
+                // outline: none;
+                // cursor: pointer;
+
+                // span {
+                //     margin: 0;
+                // }
+            }
+        }
+    }
+
+    .steps-content {
+        &__input {
+            border-radius: 16px;
+            padding: 13px;
+            .font(#7D7D7D, Montserrat-Alt, 16px, 120%, 0.32px);
+
+            &.modified {
+                border-radius: 0 16px 16px 0;
+            }
+        }
+
+        &__selector {
+            width: 200px;
+        }
+
+        &.second {
+            margin-bottom: 75px;
+        }
+
+        &.third {
+            margin-bottom: 75px;
+        }
+
+        &__group {
+            margin-bottom: 15px;
+        }
+
+        &__course {
+            margin-bottom: 30px;
+        }
+    }
+}

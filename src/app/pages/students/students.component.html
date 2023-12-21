@@ -1,0 +1,54 @@
+<div class="students">
+  <app-page-header
+    title="Student Portal"
+    btnText="Add student"
+    (searchValue)="searchValue($event)"
+    (handleEvent)="addStudent()"
+  >
+    <svg-plus class="d-flex"></svg-plus
+  ></app-page-header>
+  <div class="students__filter" [hidden]="!showFilter">
+    <app-radio-group
+      [radioOptions]="radioOptions"
+      [selectedOption]="selectedRadioOption"
+      [selectedValue]="selectedRadioValue"
+      (selectedOptionChange)="onChangeRadio($event)"
+    ></app-radio-group>
+
+    <app-selector
+      [selectorData]="groupIdOption"
+      [selectedValue]="groupIdSelected"
+      (selectedValueChange)="filterByGroupSelector($event)"
+    >
+      <svg-groups class="d-flex"></svg-groups>
+    </app-selector>
+  </div>
+
+  <div class="students__table">
+    <app-student-list
+      [data]="clients"
+      [isLoading]="isLoading"
+      (editStudentData)="editStudent($event)"
+      (handleArchive)="handleArchive($event)"
+      (handleDelete)="handleDelete($event)"
+    ></app-student-list>
+  </div>
+</div>
+
+<app-add-student-modal
+  *ngIf="groupIdOptionForChoise && groupIdOptionForChoise.length"
+  [groupIdOption]="groupIdOptionForChoise"
+  (editingGroupIdChange)="resetGroupId()"
+  [(isVisible)]="isVisibleModal"
+  [form]="form"
+  [selectedPrefix]="selectedPrefix"
+  [editingGroupId]="editingGroupId && editingGroupId"
+  [client]="client"
+  (refresh)="refresh()"
+></app-add-student-modal>
+
+<!-- Это закомментированный пример смотрите так же ts файл.
+   В свойстве link я добавил весь тег и когда вы будете добавлять 
+  свой iframe не забудьте указать width="100%" это обязательно-->
+
+<app-f-a-q [guidList]="guidList"></app-f-a-q>

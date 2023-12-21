@@ -1,0 +1,18 @@
+<div class="paid">
+  <nz-radio-group
+    [ngModel]="
+      selectedValue === true || selectedValue === false
+        ? selectedValue
+        : radioOptions[selectedOption].value
+    "
+    (ngModelChange)="selectedOptionChange.emit($event)"
+    nzButtonStyle="solid"
+  >
+    <label
+      *ngFor="let radio of radioOptions"
+      nz-radio-button
+      [nzValue]="radio.value"
+      >{{ radio.label }}</label
+    >
+  </nz-radio-group>
+</div>

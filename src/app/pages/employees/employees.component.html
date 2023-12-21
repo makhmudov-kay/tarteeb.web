@@ -1,0 +1,46 @@
+<div class="employee">
+  <app-page-header
+    [title]="'Employees'"
+    [btnText]="'Add employee'"
+    (handleEvent)="addEmployee()"
+     (searchValue)="searchValue($event)"
+  >
+    <svg-plus class="d-flex"></svg-plus>
+  </app-page-header>
+
+  <div class="employeess__filter" [hidden]="!showFilter">
+    <app-radio-group
+      [radioOptions]="radioOptions"
+      [selectedOption]="selectedRadioOption"
+      [selectedValue]="selectedRadioValue"
+      (selectedOptionChange)="onChangeRadio($event)"
+    ></app-radio-group>
+
+    <app-selector
+      [selectorData]="departmentIdOption"
+      [selectedValue]="departmentIdSelected"
+      (selectedValueChange)="filterByDepartmentSelector($event)"
+    >
+      <svg-groups class="d-flex"></svg-groups>
+    </app-selector>
+  </div>
+  <div class="employees__table">
+    <app-employee-list
+      [data]="contractors"
+      [isLoading]="isLoading"
+      (editingData)="editEmploye($event)"
+    ></app-employee-list>
+  </div>
+</div>
+
+<app-add-edit-employees
+  *ngIf="departmentIdOptionForChoise && departmentIdOptionForChoise.length"
+  [departmentIdOption]="departmentIdOptionForChoise"
+  (editingDepartmentIdChange)="resetDepartmentId()"
+  [(isVisible)]="isVisibleModal"
+  [form]="form"
+  [selectedPrefix]="selectedPrefix"
+  [editingDepartmentId]="editingDepartmentId"
+  [employee]="employee"
+  (refresh)="refresh()"
+></app-add-edit-employees>

@@ -1,0 +1,14 @@
+<div class="skeleton">
+  <div class="skeleton__statistic">
+    <div *ngFor="let card of [].constructor(6)">
+      <content-loader
+        viewBox="0 0 352 119"
+        [speed]="2"
+        backgroundColor="#d6d6d6"
+        foregroundColor="#ecebeb"
+      >
+        <svg:rect x="0" y="0" rx="16" ry="16" width="352" height="118" />
+      </content-loader>
+    </div>
+  </div>
+</div>

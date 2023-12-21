@@ -1,0 +1,28 @@
+@import url('../../../../../assets/utils/_global.less');
+
+.day-selector {
+    position: relative;
+
+    &__month {
+        text-align: center;
+        margin-bottom: 15px;
+        .font(#7D7D7D, Montserrat-Alt, 16px, 120%, 0.32px);
+    }
+
+    &__btn {
+        position: absolute;
+        top: 50%;
+        border: none;
+        background: none;
+        cursor: pointer;
+
+        &.pre {
+            left: 15%;
+            transform: rotate(180deg);
+        }
+
+        &.next {
+            right: 15%;
+        }
+    }
+}

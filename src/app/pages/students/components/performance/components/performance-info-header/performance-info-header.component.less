@@ -1,0 +1,43 @@
+@import url('../../../../../../../assets/utils/_variables.less');
+@import url('../../../../../../../assets/utils/_global.less');
+
+.info-header {
+    padding: @padding-base;
+    border-radius: @baseRadius;
+    background: @white;
+
+    &__user {
+        .font(#0096FA, Montserrat-Alt, 16px, 19px, 0.02em);
+    }
+
+    &__info {
+        &__list {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+
+            &__item {
+                padding: @padding-base;
+                display: flex;
+                gap: 10px;
+                align-items: center;
+
+                span {
+                    .font(#7D7D7D, Montserrat-Alt, 14px, 17px, 0.02em);
+                }
+
+                &.telegram {
+                    gap: 40px;
+                    background: #D2EEEB;
+                    border-radius: @baseRadius;
+
+                    .telegram__text {
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                    }
+                }
+            }
+        }
+    }
+}

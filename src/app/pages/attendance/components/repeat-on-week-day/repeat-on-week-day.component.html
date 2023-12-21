@@ -1,0 +1,19 @@
+<div class="repeated-day-selector">
+  <nz-range-picker
+    class="date-picker"
+    nzSize="large"
+    [ngModel]="null"
+    (ngModelChange)="selectedRangeDate.emit($event)"
+    [ngModelOptions]="{ standalone: true }"
+  ></nz-range-picker>
+
+  <div class="week-days">
+    <p>Repeat on:</p>
+    <app-weekday-list
+      type="checkbox"
+      [form]="form"
+      [dayOfWeek]="dayOfWeek"
+      (isSelectedDays)="isSelectedDays.emit($event)"
+    ></app-weekday-list>
+  </div>
+</div>

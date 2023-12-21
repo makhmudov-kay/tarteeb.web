@@ -1,0 +1,103 @@
+<form nz-form [nzLayout]="'vertical'" [formGroup]="form">
+  <ng-container *ngIf="mainInfo">
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6" nzFor="firstName">First name*</nz-form-label>
+      <nz-form-control [nzSpan]="24" nzErrorTip="Please, enter first name">
+        <input
+          nzSize="large"
+          nz-input
+          name="firstName"
+          id="firstName"
+          formControlName="firstName"
+          class="w-100 steps-content__input"
+        />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6" nzFor="lastName">Last name*</nz-form-label>
+      <nz-form-control [nzSpan]="24" nzErrorTip="Please, enter last name">
+        <input
+          nzSize="large"
+          nz-input
+          name="lastName"
+          id="lastName"
+          formControlName="lastName"
+          class="w-100 steps-content__input"
+        />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item class="step-content__phone">
+      <nz-form-label [nzSpan]="6" nzFor="phoneNumber" nzRequired
+        >Phone number</nz-form-label
+      >
+      <nz-form-control [nzSpan]="24" nzErrorTip="Please, enter phone number">
+        <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate">
+          <input
+            type="text"
+            class="w-100 steps-content__input modified"
+            nz-input
+            name="phoneNumber"
+            id="phoneNumber"
+            [mask]="'00 000 00 00'"
+            placeHolder="90 345 67 89"
+            formControlName="phoneNumber"
+          />
+        </nz-input-group>
+        <ng-template #addOnBeforeTemplate>
+          <nz-select
+            [ngModel]="selectedPrefix"
+            (ngModelChange)="selectedPrefixChange.emit($event)"
+            [ngModelOptions]="{ standalone: true }"
+            class="step-content__selector"
+          >
+            <nz-option
+              *ngFor="let prefix of phonePrefix"
+              [nzLabel]="prefix"
+              [nzValue]="prefix"
+            ></nz-option>
+          </nz-select>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+  </ng-container>
+  <ng-container *ngIf="additionalInfo">
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6" nzFor="Email">Email*</nz-form-label>
+      <nz-form-control [nzSpan]="24" nzErrorTip="Please, enter your email">
+        <input
+          nzSize="large"
+          nz-input
+          name="Email"
+          id="Email"
+          type="email"
+          formControlName="email"
+          class="w-100 steps-content__input"
+        />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6" nzFor="birthday">Birth Date*</nz-form-label>
+      <nz-form-control [nzSpan]="24" nzErrorTip="Please, enter birthday">
+        <nz-date-picker
+          formControlName="birthDate"
+          nzSize="large"
+          id="birthday"
+          class="w-100 steps-content__input"
+        ></nz-date-picker>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="6" nzFor="password">Password*</nz-form-label>
+      <nz-form-control [nzSpan]="24" nzErrorTip="Please, enter password, min length 8 characters">
+        <input
+          nzSize="large"
+          nz-input
+          id="password"
+          type="text"
+          formControlName="password"
+          class="w-100 steps-content__input"
+        />
+      </nz-form-control>
+    </nz-form-item>
+  </ng-container>
+</form>

@@ -1,0 +1,15 @@
+<div class="day-selector">
+  <p class="day-selector__month">{{ currentMonth }}</p>
+  <button class="day-selector__btn pre" (click)="getPreviousWeek.emit()">
+    <svg-arrow></svg-arrow>
+  </button>
+  <app-weekday-list
+    type="radio"
+    [form]="form"
+    [dayOfWeek]="dayOfWeek"
+    (isSelectedDays)="isSelectedDays.emit($event)"
+  ></app-weekday-list>
+  <button class="day-selector__btn next" (click)="getNextWeek.emit()">
+    <svg-arrow></svg-arrow>
+  </button>
+</div>

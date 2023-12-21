@@ -1,0 +1,81 @@
+@import url('../../../../assets/utils/_variables.less');
+@import url('../../../../assets/utils/_global.less');
+
+.selector {
+    .ant-select {
+        &-single {
+            &::before {
+                content: none;
+            }
+
+            &:not(.ant-select-customize-input) .ant-select-selector {
+                height: auto;
+            }
+        }
+    }
+
+    ::ng-deep {
+        svg {
+            path {
+                fill: #477AB5;
+            }
+        }
+    }
+
+    &.anyColor {
+        ::ng-deep {
+            svg {
+                path {
+                    fill: #fff;
+                }
+            }
+        }
+    }
+}
+
+
+.custom-select {
+    display: flex;
+    align-items: center;
+
+    &__text {
+        margin-left: 10px;
+        .font(#477AB5, Montserrat-Alt, 14px, 120%, 0.28px);
+    }
+
+    &.group {
+        padding: 15px 23px;
+        border-radius: @baseRadius;
+        border: 2px solid @primary-color;
+    }
+
+    &.small {
+        padding: 12px 16px;
+        border: none;
+
+        .custom-select__text {
+            .font(#477AB5, Montserrat-Alt, 10px, 120%, 2%);
+        }
+
+        .group__arrow {
+            margin-left: 24px;
+        }
+    }
+}
+
+.group__arrow {
+    display: block;
+    transform: rotate(90deg);
+    margin-left: 40px;
+}
+
+.nzWidth {
+    .ant-select {
+        width: 100%;
+        justify-content: space-between;
+
+        .custom-select {
+            justify-content: space-between;
+        }
+    }
+}

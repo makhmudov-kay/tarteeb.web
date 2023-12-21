@@ -1,0 +1,140 @@
+<nz-modal
+  [(nzVisible)]="isVisible"
+  (nzOnCancel)="handleCancel()"
+  [nzWidth]="680"
+  [nzFooter]="null"
+  [nzClosable]="false"
+>
+  <ng-container *nzModalContent>
+    <div class="add-student-modal">
+      <div class="modal-header">
+        <h3>{{ editingGroupId ? "Edit student" : "Add student" }}</h3>
+        <span (click)="handleCancel()"><svg-close></svg-close></span>
+      </div>
+
+      <!-- FOOTER -->
+      <div class="add-student-modal__step">
+        <nz-steps nzType="navigation" [nzCurrent]="current">
+          <nz-step
+            nzTitle="Personal data"
+            [nzStatus]="current >= 0 ? 'process' : 'wait'"
+          ></nz-step>
+          <nz-step
+            nzTitle="Group"
+            [nzStatus]="current >= 1 ? 'process' : 'wait'"
+          ></nz-step>
+          <nz-step
+            nzTitle="Course"
+            [nzStatus]="current >= 2 ? 'process' : 'wait'"
+          ></nz-step>
+          <nz-step
+            nzTitle="Review"
+            [nzStatus]="current === 3 ? 'process' : 'wait'"
+          ></nz-step>
+        </nz-steps>
+      </div>
+
+      <!-- CONTENT -->
+      <div class="add-student-modal__content">
+        <div class="steps-content" *ngIf="current === 0">
+          <app-personal-data
+            [form]="form"
+            [mainInfo]="true"
+            [phonePrefix]="phonePrefix"
+            [selectedPrefix]="prefix"
+            (selectedPrefixChange)="prefixChange($event)"
+          ></app-personal-data>
+        </div>
+        <div class="steps-content second" *ngIf="current === 1">
+          <app-selector-data
+            [selectorData]="groupIdOption"
+            [selectedValue]="currentGroup"
+            labelTitle="Choose group*"
+            (selectedValueChange)="filterByGroupSelector($event)"
+          >
+            <svg-groups class="d-flex"></svg-groups
+          ></app-selector-data>
+        </div>
+        <div class="steps-content third" *ngIf="current === 2">
+          <app-selector-data
+            [selectorData]="courses"
+            [selectedValue]="currentCourse"
+            [icon]="'file'"
+            [editingGroupId]="editingGroupId"
+            labelTitle="Choose course*"
+            (selectedValueChange)="filterByCourseSelector($event)"
+          >
+            <svg-invoices class="d-flex"></svg-invoices>
+          </app-selector-data>
+        </div>
+        <div class="steps-content" *ngIf="current === 3">
+          <div class="steps-content__personal">
+            <app-personal-data
+              [phonePrefix]="phonePrefix"
+              [mainInfo]="true"
+              [selectedPrefix]="prefix"
+              (selectedPrefixChange)="selectedPrefix = $event"
+              [form]="form"
+              ><svg-groups class="d-flex"></svg-groups
+            ></app-personal-data>
+          </div>
+
+          <div class="steps-content__group">
+            <app-selector-data
+              [selectorData]="groupIdOption"
+              [selectedValue]="currentGroup"
+              labelTitle="Choose group*"
+              (selectedValueChange)="filterByGroupSelector($event)"
+            ></app-selector-data>
+          </div>
+
+          <div class="steps-content__course">
+            <app-selector-data
+              [editingGroupId]="editingGroupId"
+              [selectorData]="courses"
+              [selectedValue]="currentCourse"
+              labelTitle="Choose course*"
+              (selectedValueChange)="filterByCourseSelector($event)"
+            >
+              <svg-invoices class="d-flex"></svg-invoices
+            ></app-selector-data>
+          </div>
+        </div>
+      </div>
+
+      <!-- FOOTER -->
+      <div class="add-student-modal__footer">
+        <div class="steps-action">
+          <button
+            nz-button
+            nzType="default"
+            nzSize="large"
+            (click)="pre()"
+            *ngIf="current > 0"
+          >
+            Previous
+          </button>
+          <button
+            nz-button
+            nzType="primary"
+            (click)="next()"
+            nzSize="large"
+            *ngIf="current < 3"
+          >
+            Next
+          </button>
+          <button
+            nz-button
+            nzType="primary"
+            nzSize="large"
+            (click)="addEditStudent()"
+            [nzLoading]="isLoading"
+            *ngIf="current === 3"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</nz-modal>

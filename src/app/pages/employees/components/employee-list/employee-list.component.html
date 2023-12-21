@@ -1,0 +1,63 @@
+<div class="table-data">
+  <nz-table
+    #rowSelectionTable
+    nzShowPagination
+    nzShowSizeChanger
+    [nzData]="data"
+    [nzLoading]="isLoading"
+    (nzCurrentPageDataChange)="onCurrentPageDataChange($event)"
+  >
+    <thead>
+      <tr>
+        <th nzColumnKey="id" nzWidth="70px">№</th>
+        <th nzColumnKey="student">Name</th>
+        <th nzColumnKey="amount" nzWidth="230px">Start date</th>
+        <th nzColumnKey="status" nzWidth="200px">Phone</th>
+        <th nzWidth="220px">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of rowSelectionTable.data; let id = index">
+        <td>
+          {{
+            (rowSelectionTable.nzPageIndex - 1) * rowSelectionTable.nzPageSize +
+              id +
+              1
+          }}
+        </td>
+        <td>{{ data.lastName + " " + data.firstName }}</td>
+        <td>{{ data.enrolledDate | date : "d LLLL yyyy" }}</td>
+        <td>{{ data.phoneNumber }}</td>
+        <td>
+          <div class="actions-btn">
+            <button nz-button nzType="default" (click)="editingData.emit(data)">
+              <span nz-icon nzType="edit" nzTheme="outline"></span>
+              Edit
+            </button>
+            <!-- <button nz-button nzType="default">
+              <span nz-icon nzType="eye" nzTheme="outline"></span>View
+            </button> -->
+
+            <button
+              nz-button
+              nzType="default"
+              nz-dropdown
+              nzTrigger="click"
+              [nzDropdownMenu]="menu"
+            >
+              <span nz-icon nzType="ellipsis" nzTheme="outline"></span>
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>
+
+<!-- DROPDOWN MENU -->
+<nz-dropdown-menu #menu="nzDropdownMenu">
+  <ul nz-menu>
+    <li nz-menu-item>Archive</li>
+    <li nz-menu-item>Delete</li>
+  </ul>
+</nz-dropdown-menu>

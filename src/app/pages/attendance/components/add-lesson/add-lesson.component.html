@@ -1,0 +1,212 @@
+<nz-modal
+  [(nzVisible)]="isVisible"
+  (nzOnCancel)="handleCancel()"
+  [nzWidth]="950"
+  nzCentered
+  [nzFooter]="null"
+  [nzClosable]="false"
+>
+  <ng-container *nzModalContent>
+    <div class="attendance-modal">
+      <div class="modal-header">
+        <h3>Add lesson</h3>
+        <span (click)="handleCancel()"><svg-close></svg-close></span>
+      </div>
+
+      <form
+        class="attendance-modal__content"
+        nz-form
+        nzLayout="vertical"
+        [formGroup]="form"
+      >
+        <nz-form-item>
+          <nz-form-label [nzSpan]="6" nzFor="title">Lesson title</nz-form-label>
+          <nz-form-control
+            [nzSpan]="24"
+            nzErrorTip="Please, enter lesson`s title"
+          >
+            <input
+              nzSize="large"
+              nz-input
+              type="text"
+              id="title"
+              formControlName="title"
+              class="w-100 attendance-modal__content__input"
+            />
+          </nz-form-control>
+        </nz-form-item>
+
+        <ng-container *ngIf="single; else multi">
+          <div
+            class="attendance-modal__content__select-time"
+            [ngClass]="{
+              validationError:
+                form.controls['single'].invalid && form.controls['single'].dirty
+            }"
+          >
+            <app-day-selector
+              [form]="form"
+              [dayOfWeek]="dayOfWeek"
+              [currentWeekStartDate]="currentWeekStartDate"
+              [currentMonth]="currentMonth"
+              (getPreviousWeek)="getPreviousWeek()"
+              (getNextWeek)="getNextWeek()"
+              (isSelectedDays)="isSelectedDays($event)"
+            ></app-day-selector>
+            <div
+              class="error"
+              *ngIf="
+                form.controls['single'].invalid && form.controls['single'].dirty
+              "
+            >
+              <small *ngIf="(form.get('single')?.errors)!['required']"
+                >Please select date for your lesson</small
+              >
+            </div>
+          </div></ng-container
+        >
+
+        <ng-template #multi>
+          <div
+            class="attendance-modal__content__repeated"
+            [ngClass]="{
+              validationError:
+                form.controls['multi'].invalid &&
+                form.controls['multi'].dirty &&
+                form.controls['dateRange'].invalid &&
+                form.controls['dateRange'].dirty
+            }"
+          >
+            <app-repeat-on-week-day
+              [form]="form"
+              [dayOfWeek]="dayOfWeek"
+              (isSelectedDays)="isSelectedDays($event)"
+              (selectedRangeDate)="selectedRangeDate($event)"
+            ></app-repeat-on-week-day>
+            <div
+              class="error"
+              *ngIf="
+                form.controls['multi'].invalid &&
+                form.controls['multi'].dirty &&
+                form.controls['dateRange'].invalid &&
+                form.controls['dateRange'].dirty
+              "
+            >
+              <small
+                *ngIf="
+                  (form.get('multi')?.errors)!['required'] ||
+                  (form.get('dateRange')?.errors)!['required']
+                "
+                >Please select date for your lesson and week days</small
+              >
+            </div>
+          </div>
+        </ng-template>
+
+        <div class="attendance-modal__content__hours">
+          <div class="picker">
+            <span>From:</span>
+            <nz-time-picker
+              formControlName="from"
+              nzFormat="HH:mm"
+              nzSize="large"
+              class="picker__time"
+              [ngClass]="{
+                validationError:
+                  form.controls['from'].invalid && form.controls['from'].dirty
+              }"
+            ></nz-time-picker>
+            <div
+              class="error"
+              *ngIf="
+                form.controls['from'].invalid && form.controls['from'].dirty
+              "
+            >
+              <small *ngIf="(form.get('from')?.errors)!['required']"
+                >Set leeson's start time</small
+              >
+            </div>
+          </div>
+          <div class="picker">
+            <span>To:</span>
+            <nz-time-picker
+              formControlName="to"
+              nzFormat="HH:mm"
+              nzSize="large"
+              class="picker__time"
+              [ngClass]="{
+                validationError:
+                  form.controls['to'].invalid && form.controls['to'].dirty
+              }"
+            ></nz-time-picker>
+            <div
+              class="error"
+              *ngIf="form.controls['to'].invalid && form.controls['to'].dirty"
+            >
+              <small *ngIf="(form.get('to')?.errors)!['required']"
+                >Set leeson's end time</small
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="attendance-modal__content__selectors">
+          <app-selector
+            [selectorData]="groupSelector"
+            [selectedValue]="selectedGroupValue"
+            (selectedValueChange)="selectedGroup($event)"
+          >
+            <svg-groups class="d-flex"></svg-groups>
+          </app-selector>
+          <app-selector
+            [selectorData]="roomSelector"
+            [selectedValue]="selectedRoomValue"
+            (selectedValueChange)="selectedRoom($event)"
+          >
+            <svg-groups class="d-flex"></svg-groups>
+          </app-selector>
+          <app-selector
+            [selectorData]="teacherSelector"
+            [selectedValue]="selectedTeacherValue"
+            (selectedValueChange)="selectedTeacher($event)"
+          >
+            <svg-groups class="d-flex"></svg-groups>
+          </app-selector>
+        </div>
+      </form>
+
+      <div class="modal-footer">
+        <div class="modal-footer__multiple-btn">
+          <button
+            nz-button
+            type="link"
+            nzSize="large"
+            (click)="toggleDaySelector()"
+          >
+            {{ single ? "+Add multiple lesson" : "+Add single lesson" }}
+          </button>
+        </div>
+
+        <div class="modal-footer__actions-btn">
+          <button
+            nz-button
+            nzType="default"
+            nzSize="large"
+            (click)="handleCancel()"
+          >
+            Cancel
+          </button>
+          <button
+            nz-button
+            nzType="primary"
+            nzSize="large"
+            [nzLoading]="isLoading"
+            (click)="createLesson()"
+          >
+            Create
+          </button>
+        </div>
+      </div>
+    </div>
+  </ng-container></nz-modal
+>

@@ -1,0 +1,50 @@
+    @import url('../../../../../assets/utils/_global.less');
+    @import url('../../../../../assets/utils/_variables.less');
+
+    .week-day-list {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+
+        .week-day-selector {
+            display: block;
+            cursor: pointer;
+            display: flex;
+            flex: 0 0 66px;
+            width: 66px;
+            height: 66px;
+
+            input {
+                position: absolute;
+                appearance: none;
+                top: 0;
+                left: 0;
+            }
+
+            .check-marker {
+                background: #F2F2F2;
+                display: flex;
+                width: 100%;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding: 10px 15px;
+                border-radius: @baseRadius;
+                transition: 0.3s;
+                .font(#477AB5, Montserrat-Alt, 14px, 120%, 0.26px);
+
+                &:hover {
+                    background: #D2EEEB;
+                }
+
+                span {
+                    display: block;
+                }
+            }
+
+            input:checked~.check-marker {
+                background: #477AB5;
+                .font(#FBFBFB, Montserrat-Alt, 14px, 120%, 0.26px);
+            }
+        }
+    }

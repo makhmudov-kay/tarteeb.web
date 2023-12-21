@@ -1,0 +1,13 @@
+<nz-modal
+  [(nzVisible)]="isVisible"
+  [nzFooter]="null"
+  (nzOnCancel)="handleCancel()"
+  [nzWidth]="900"
+>
+  <ng-container *nzModalContent>
+    <div
+      class="video-guide"
+      [innerHTML]="sanitizer.bypassSecurityTrustHtml(data.link)"
+    ></div>
+  </ng-container>
+</nz-modal>

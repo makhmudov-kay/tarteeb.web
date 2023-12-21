@@ -1,0 +1,17 @@
+<div class="sidebar" [ngClass]="{isCollapsed}">
+  <div class="sidebar__collapse" (click)="toggleCollapse()">
+    <svg-arrow class="d-flex"></svg-arrow>
+  </div>
+  <!-- LOGO -->
+  <div class="sidebar__logo" [ngClass]="{isCollapsed}">
+    <p>Tarteeb</p>
+  </div>
+
+  <!-- MENU -->
+  <div class="sidebar__menu">
+    <app-menu [isCollapsed]="isCollapsed"></app-menu>
+  </div>
+
+  <!-- USER -->
+  <app-user [isCollapsed]="isCollapsed" [user]="user"></app-user>
+</div>

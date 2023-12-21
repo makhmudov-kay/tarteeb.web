@@ -1,0 +1,72 @@
+@import url('../../../../assets/utils/_variables.less');
+
+.search-bar {
+    padding: 10px 20px;
+    border-radius: 16px;
+    background: @white;
+    display: flex;
+    align-items: center;
+
+    &__name {
+        flex-grow: 1;
+
+        .ant-input-affix-wrapper {
+            border: none;
+        }
+
+        .ant-input-affix-wrapper-focused,
+        .ant-input-affix-wrapper>input.ant-input:focus {
+            box-shadow: none !important;
+        }
+
+        input {
+            color: #1B1D1F;
+            font-family: Lato;
+            font-size: 14px;
+            line-height: 120%;
+            letter-spacing: 0.28px;
+        }
+    }
+
+    &__filter {
+        margin-left: 5px;
+
+        a {
+            border-radius: 15px;
+            background: #D2EEEB;
+            padding: 6px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            user-select: none;
+
+            &.active {
+                background: #477AB5;
+
+                span {
+                    color: #fff;
+                }
+
+                ::ng-deep {
+                    svg {
+                        g {
+                            path {
+                                fill: #fff;
+                            }
+                        }
+                    }
+                }
+            }
+
+
+            span {
+                color: #7D7D7D;
+                font-family: Lato;
+                font-size: 14px;
+                line-height: 120%;
+                letter-spacing: 0.28px;
+            }
+        }
+    }
+}

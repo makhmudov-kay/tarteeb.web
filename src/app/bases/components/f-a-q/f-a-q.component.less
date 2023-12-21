@@ -1,0 +1,66 @@
+@import url('../../../../assets/utils/_global.less');
+
+.faq {
+    width: 43px;
+    height: 43px;
+    position: fixed;
+    z-index: 100;
+    right: 42px;
+    bottom: 56px;
+    border-radius: 50%;
+    background: #0096FA;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+        background: lighten(#0096FA, 10%);
+    }
+
+    span {
+        .font(#F2F2F2, Montserrat-Alt, 24px, 120%, 0.48px);
+    }
+
+    &-list {
+        position: absolute;
+        bottom: 21px;
+        right: 42px;
+        flex-direction: column;
+        gap: 8px;
+        display: none;
+        transition: 0.4s;
+        z-index: -1;
+
+        &.isOpen {
+            display: flex;
+        }
+
+        &__item {
+            padding: 9px 16px;
+            border-radius: 8px;
+            background: #FBFBFB;
+            box-shadow: 4px 4px 16px 0px rgba(0, 0, 0, 0.28);
+            display: flex;
+            align-items: center;
+            transition: 0.4s;
+            width: 230px;
+
+            &:hover {
+                border-radius: 8px;
+                background: #D2EEEB;
+                box-shadow: 4px 4px 16px 0px rgba(0, 0, 0, 0.28);
+
+                span {
+                    color: #477AB5;
+                }
+            }
+
+            span {
+                .font(#0096FA, Montserrat-Alt, 14px, 120%, 0.20px);
+                display: inline-block;
+            }
+        }
+    }
+}

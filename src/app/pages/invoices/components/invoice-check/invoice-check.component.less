@@ -1,0 +1,206 @@
+@import url('../../../../../assets/utils/_global.less');
+@import url('../../../../../assets/utils/_variables.less');
+
+.invoice-check {
+    border-radius: 24px;
+    background: #FBFBFB;
+    box-shadow: 4px 4px 16px 0px rgba(0, 0, 0, 0.28);
+    padding: 32px;
+
+    &__header {
+        margin-bottom: 30px;
+
+        &__title {
+            .font(#1B1D1F, Montserrat-Alt, 16px, 120%, 0.32px);
+        }
+
+        &__date {
+            .font(#000, Lato, 14px, 120%, 0.28px);
+        }
+    }
+
+    &__company-name {
+        margin-bottom: 30px;
+
+        h3 {
+            text-align: center;
+            .font(#1B1D1F, Montserrat-Alt, 24px, 120%, 0.48px);
+        }
+    }
+
+    &__info {
+        border-radius: @baseRadius;
+        background: @primary-color;
+        padding: 30px 50px;
+
+        .list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+
+            &__item {
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+
+                &__title {
+                    display: flex;
+                    align-items: center;
+                    gap: 11px;
+                    .font(#FBFBFB, Montserrat-Alt, 16px, 120%, 0.32px);
+                }
+
+                &__info {
+                    .font(#FBFBFB, Lato, 16px, 120%, 0.32px);
+                }
+            }
+        }
+    }
+
+    &__data-info {
+        margin-top: 30px;
+        padding: 0 50px;
+
+        .data-list {
+            display: flex;
+            justify-content: space-between;
+
+            &__item {
+                display: flex;
+                flex-direction: column;
+                gap: 27px;
+
+                &__title {
+                    .font(#477AB5, Montserrat-Alt, 16px, 120%, 0.32px);
+                }
+
+                &__text {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    .font(#7D7D7D, Lato, 16px, 120%, 0.32px);
+
+                    &__sub {
+                        display: flex;
+                        flex-direction: column;
+                    }
+                }
+            }
+        }
+    }
+
+    &__services {
+        margin-top: 50px;
+
+        &__title {
+            .font(#1B1D1F, Montserrat-Alt, 16px, 120%, 0.32px);
+            margin-bottom: 30px;
+        }
+
+        &__total {
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+
+            &__wrapper {
+                display: flex;
+                gap: 40px;
+
+                p {
+                    width: 200px;
+                    text-align: end;
+                    .font(#1B1D1F, Montserrat-Alt, 16px, 120%, 0.32px);
+                }
+
+                span {
+                    width: 150px;
+
+                    &.paid-amount {
+                        .font(#379F41, Montserrat-Alt, 16px, 120%, 0.32px);
+                    }
+
+                    &.total-price {
+                        .font(#7D7D7D, Montserrat-Alt, 16px, 120%, 0.32px);
+                    }
+                }
+            }
+        }
+    }
+
+    &__table {
+        table {
+            width: 100%;
+
+            tr {
+                padding: 0 32px;
+
+                &:not(:first-of-type) {
+                    border-bottom: 1px solid #7D7D7D;
+                }
+
+                td,
+                th {
+                    text-align: start;
+                    padding: 16px 0;
+
+                    &:first-of-type {
+                        padding-left: 32px;
+                    }
+
+                    &:last-of-type {
+                        padding-right: 32px;
+                        text-align: end
+                    }
+                }
+
+                th {
+                    .font(#477AB5, Montserrat-Alt, 16px, 120%, 0.32px);
+                }
+
+                td {
+                    .font(#477AB5, Montserrat-Alt, 14px, 120%, 0.32px);
+
+                    &.data {
+                        &-name {
+                            color: #1B1D1F;
+                        }
+
+                        &-price {
+                            color: #0096FA;
+                        }
+
+                        &-discount {
+                            color: #379F41;
+                        }
+
+                        &-total {
+                            color: #1B1D1F;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    &__footer {
+        display: flex;
+        justify-content: space-between;
+
+
+        &__wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+
+            p {
+                .font(#7D7D7D, Montserrat-Alt, 10px, 120%, 0.2px);
+            }
+
+            h3 {
+                .font(#7D7D7D, Montserrat-Alt, 16px, 120%, 0.32px);
+                color: linear-gradient(135deg, #0096FA 0%, #43B97F 100%);
+            }
+        }
+    }
+}

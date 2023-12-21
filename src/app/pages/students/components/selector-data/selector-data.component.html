@@ -1,0 +1,11 @@
+<label class="label">{{ labelTitle }}</label>
+<app-selector
+  [selectorData]="selectorData"
+  [selectedValue]="selectedValue"
+  [default]="true"
+  [nzWidth]="true"
+  [isDisabled]="!!editingGroupId"
+  (selectedValueChange)="selectedValueChange.emit($event)"
+>
+    <ng-content></ng-content>
+</app-selector>

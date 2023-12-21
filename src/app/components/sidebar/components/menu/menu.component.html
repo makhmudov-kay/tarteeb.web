@@ -1,0 +1,138 @@
+<ul class="menu">
+  <li
+    class="menu__item"
+    [routerLink]="['/dashboard']"
+    routerLinkActive="active"
+    [ngClass]="{isCollapsed}"
+    nz-tooltip
+    [nzTooltipTitle]="isCollapsed ? 'Dashboard' : null"
+    nzTooltipPlacement="right"
+  >
+    <svg-dashboard class="d-flex"></svg-dashboard>
+    <span>Dashboard</span>
+  </li>
+  <li
+    class="menu__item"
+    [ngClass]="{isCollapsed}"
+    [routerLink]="['/invoices']"
+    routerLinkActive="active"
+    nz-tooltip
+    [nzTooltipTitle]="isCollapsed ? 'Invoices' : null"
+    nzTooltipPlacement="right"
+  >
+    <svg-invoices class="d-flex"></svg-invoices>
+    <span>Invoices</span>
+  </li>
+  <li
+    class="menu__item"
+    [ngClass]="{isCollapsed}"
+    [routerLink]="['/attendance']"
+    routerLinkActive="active"
+    nz-tooltip
+    [nzTooltipTitle]="isCollapsed ? 'Attendance & Progress' : null"
+    nzTooltipPlacement="right"
+  >
+    <svg-bars class="d-flex"></svg-bars>
+    <span>Attendance & Progress</span>
+  </li>
+  <li
+    class="menu__item"
+    [ngClass]="{isCollapsed}"
+    [routerLink]="['/students']"
+    routerLinkActive="active"
+    nz-tooltip
+    [nzTooltipTitle]="isCollapsed ? 'Students' : null"
+    nzTooltipPlacement="right"
+  >
+    <svg-students class="d-flex"></svg-students>
+    <span>Students</span>
+  </li>
+  <li
+    class="menu__item"
+    [ngClass]="{isCollapsed}"
+    [routerLink]="['/groups']"
+    routerLinkActive="active"
+    nz-tooltip
+    [nzTooltipTitle]="isCollapsed ? 'Groups' : null"
+    nzTooltipPlacement="right"
+  >
+    <svg-groups class="d-flex"></svg-groups>
+    <span>Groups</span>
+  </li>
+  <li
+    class="menu__item"
+    [ngClass]="{isCollapsed}"
+    [routerLink]="['/lessons']"
+    routerLinkActive="active"
+    nz-tooltip
+    [nzTooltipTitle]="isCollapsed ? 'Lessons' : null"
+    nzTooltipPlacement="right"
+  >
+    <svg-calendar class="d-flex"></svg-calendar>
+    <span>Lessons</span>
+  </li>
+  <li
+    class="menu__item"
+    [ngClass]="{isCollapsed}"
+    [routerLink]="['/messages']"
+    routerLinkActive="active"
+    nz-tooltip
+    [nzTooltipTitle]="isCollapsed ? 'Messages' : null"
+    nzTooltipPlacement="right"
+  >
+    <svg-messages class="d-flex"></svg-messages>
+    <span>Messages</span>
+  </li>
+  <li
+    class="menu__item"
+    [ngClass]="{isCollapsed}"
+    [routerLink]="['/employees']"
+    routerLinkActive="active"
+    nz-tooltip
+    [nzTooltipTitle]="isCollapsed ? 'Employees' : null"
+    nzTooltipPlacement="right"
+  >
+    <svg-employees class="d-flex"></svg-employees>
+    <span>Employees</span>
+  </li>
+  <li class="menu__item submenu" [ngClass]="{isCollapsed}">
+    <svg-dots class="d-flex"></svg-dots>
+    <span>More</span>
+
+    <ul class="menu__item__submenu">
+      <li
+        class="submenu__item"
+        [routerLink]="['/expenses']"
+        routerLinkActive="active"
+      >
+        <svg-expenses class="d-flex"></svg-expenses>
+        <span>Expenses</span>
+      </li>
+      <li
+        class="submenu__item"
+        [routerLink]="['/payroll']"
+        routerLinkActive="active"
+      >
+        <svg-payment class="d-flex"></svg-payment>
+        <span>Payroll</span>
+      </li>
+      <li
+        class="submenu__item"
+        [ngClass]="{isCollapsed}"
+        [routerLink]="['/accounting']"
+        routerLinkActive="active"
+      >
+        <svg-accounting class="d-flex"></svg-accounting>
+        <span>Accounting</span>
+      </li>
+      <li
+        class="submenu__item"
+        [routerLink]="['/settings']"
+        routerLinkActive="active"
+      >
+        <svg-settings class="d-flex"></svg-settings>
+        <span>Settings</span>
+      </li>
+    </ul>
+  </li>
+</ul>

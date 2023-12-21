@@ -1,0 +1,50 @@
+<ul class="list" *ngIf="personalInfo; else userInvoice">
+  <li class="list__item">
+    <h3 class="list__item__title">Invoicing entity</h3>
+  </li>
+  <li class="list__item">
+    <h3 class="list__item__title">{{ personalInfo.companyName }}</h3>
+  </li>
+  <li class="list__item">
+    <h3 class="list__item__title">
+      <svg-home class="d-flex"></svg-home>Address
+    </h3>
+    <p class="list__item__info">{{ personalInfo.address }}</p>
+  </li>
+  <li class="list__item">
+    <h3 class="list__item__title"><svg-mail class="d-flex"></svg-mail>Email</h3>
+    <p class="list__item__info">{{ personalInfo.email }}</p>
+  </li>
+  <li class="list__item">
+    <h3 class="list__item__title">
+      <svg-phone class="d-flex"></svg-phone>Phone number
+    </h3>
+    <p class="list__item__info">{{ personalInfo.phone }}</p>
+  </li>
+</ul>
+
+<ng-template #userInvoice>
+  <ul class="list" *ngIf="userInvoiceInfo">
+    <li class="list__item">
+      <h3 class="list__item__title">Billed to</h3>
+    </li>
+    <li class="list__item">
+      <h3 class="list__item__title">
+        {{ userInvoiceInfo.client.firstName }}
+        {{ userInvoiceInfo.client.lastName }}
+      </h3>
+    </li>
+    <li class="list__item">
+      <h3 class="list__item__title">
+        <svg-mail class="d-flex"></svg-mail>Email
+      </h3>
+      <p class="list__item__info">{{ userInvoiceInfo.client.email }}</p>
+    </li>
+    <li class="list__item">
+      <h3 class="list__item__title">
+        <svg-phone class="d-flex"></svg-phone>Phone number
+      </h3>
+      <p class="list__item__info">{{ userInvoiceInfo.client.phoneNumber }}</p>
+    </li>
+  </ul>
+</ng-template>

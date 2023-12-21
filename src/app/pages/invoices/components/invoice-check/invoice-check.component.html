@@ -1,0 +1,111 @@
+<div class="invoice-check">
+  <div class="invoice-check__header d-flex justify-content-between">
+    <div class="invoice-check__header__title">Invoice #1212</div>
+    <div class="invoice-check__header__date">
+      Last update: {{ userInvoiceInfo.updatedDate | date : "dd LLLL, yyyy" }}
+    </div>
+  </div>
+
+  <div class="invoice-check__company-name">
+    <h3>Invoice</h3>
+  </div>
+
+  <div class="invoice-check__info d-flex justify-content-between">
+    <div class="invoice-check__info__left">
+      <app-invoice-company-info
+        [personalInfo]="personalInfo"
+      ></app-invoice-company-info>
+    </div>
+
+    <div class="invoice-check__info__right">
+      <app-invoice-company-info
+        [userInvoiceInfo]="userInvoiceInfo"
+      ></app-invoice-company-info>
+    </div>
+  </div>
+
+  <div class="invoice-check__data-info">
+    <ul class="data-list">
+      <li class="data-list__item">
+        <h3 class="data-list__item__title">Issue data</h3>
+        <p class="data-list__item__text">
+          <svg-schedule class="d-flex"></svg-schedule
+          >{{ userInvoiceInfo.createdDate | date : "dd LLLL, yyyy" }}
+        </p>
+      </li>
+      <li class="data-list__item">
+        <h3 class="data-list__item__title">Due data</h3>
+        <p class="data-list__item__text">
+          <svg-schedule class="d-flex"></svg-schedule>
+          {{ formattedDate }}
+        </p>
+      </li>
+      <li class="data-list__item">
+        <h3 class="data-list__item__title">Service through</h3>
+        <p class="data-list__item__text">
+          <svg-schedule class="d-flex"></svg-schedule>
+          <span class="data-list__item__text__sub">
+            <span>{{
+              userInvoiceInfo.invoiceLines[0].startDate | date : "dd LLLL, yyyy"
+            }}</span>
+            <span>{{
+              userInvoiceInfo.invoiceLines[0].endDate | date : "dd LLLL, yyyy"
+            }}</span>
+          </span>
+        </p>
+      </li>
+    </ul>
+  </div>
+
+  <div class="invoice-check__services">
+    <h3 class="invoice-check__services__title">Services</h3>
+
+    <div class="invoice-check__table">
+      <table class="invoice-check__table__data">
+        <tr>
+          <th>Service name</th>
+          <th>Description</th>
+          <th>Discount</th>
+          <th>Line total (UZS)</th>
+        </tr>
+        <tr>
+          <td class="data-name">{{ userInvoiceInfo.invoiceLines[0].title }}</td>
+          <td class="data-price">
+            {{ userInvoiceInfo.invoiceLines[0].description }}
+          </td>
+          <td class="data-discount">{{ userInvoiceInfo.discount }}%</td>
+          <td class="data-total">
+            {{ userInvoiceInfo.invoiceLines[0].total | separate }} UZS
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="invoice-check__services__total">
+      <div class="invoice-check__services__total__wrapper">
+        <p>Paid amount</p>
+        <span class="paid-amount">{{
+          userInvoiceInfo.paidAmount | separate
+        }}</span>
+      </div>
+      <div class="invoice-check__services__total__wrapper">
+        <p>Total</p>
+        <span class="total-price"
+          >{{ userInvoiceInfo.total | separate }} UZS</span
+        >
+      </div>
+    </div>
+  </div>
+
+  <div class="invoice-check__footer">
+    <div class="invoice-check__footer__wrapper">
+      <p>Thank you for choosing us!</p>
+      <p>{{ personalInfo.companyName }}</p>
+      <p>{{ personalInfo.address }}</p>
+    </div>
+    <div class="invoice-check__footer__wrapper">
+      <p>Total invoice amount</p>
+      <h3>{{ userInvoiceInfo.total | separate }} UZS</h3>
+    </div>
+  </div>
+</div>

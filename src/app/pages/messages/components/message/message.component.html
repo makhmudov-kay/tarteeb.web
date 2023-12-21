@@ -1,0 +1,25 @@
+<div class="message" [ngClass]="{ error: !message.isSent }">
+  <p class="message__message">
+    {{ message.content }}
+  </p>
+  <p class="message__date">
+    <!-- only show time -->
+    {{ message.sentDate | date: 'shortTime' }} 
+    <span
+      ><ng-container *ngIf="message.isSent; else error"
+        ><svg-sent-mark
+          nzTooltipPlacement="bottomRight"
+          nz-tooltip
+          [nzTooltipTitle]="message.deliveryStatus ? message.deliveryStatus : 'Sent successfully'"
+        ></svg-sent-mark
+      ></ng-container>
+      <ng-template #error>
+        <svg-danger
+          nzTooltipPlacement="bottomRight"
+          nz-tooltip
+          [nzTooltipTitle]="message.deliveryStatus ? message.deliveryStatus : 'Unexpected error occurred'"
+        ></svg-danger>
+      </ng-template>
+    </span>
+  </p>
+</div>

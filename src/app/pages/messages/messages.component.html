@@ -1,0 +1,82 @@
+<div class="messages">
+  <div class="messages__users">
+    <div class="messages__filters">
+      <div class="messages__users__search">
+        <nz-input-group [nzSuffix]="suffixIconSearch" class="search-input">
+          <input
+            type="text"
+            [(ngModel)]="searchValue"
+            nz-input
+            placeholder="Search by name"
+          />
+        </nz-input-group>
+        <ng-template #suffixIconSearch>
+          <svg-search class="d-flex"></svg-search>
+        </ng-template>
+      </div>
+      <div class="messages__users__type">
+        <app-radio-group
+          [radioOptions]="radioOptions"
+          [selectedOption]="selectedOption"
+          [selectedValue]="selectedValue"
+          (selectedOptionChange)="onChangeRadio($event)"
+        ></app-radio-group>
+      </div>
+    </div>
+    <nz-spin nzTip="Loading..." [nzSpinning]="isLoading">
+      <ng-container
+        *ngIf="filteredUsers && filteredUsers.length; else emptyList"
+      >
+        <app-user
+          *ngFor="let user of filteredUsers; let idx = index"
+          [client]="user"
+          (click)="onUserClick(user.id, idx)"
+          [isActive]="idx === activeUser"
+        ></app-user>
+      </ng-container>
+    </nz-spin>
+    <ng-template #emptyList>
+      <div class="empty">Users not found</div>
+    </ng-template>
+  </div>
+  <div class="messages__messages">
+    <ng-container *ngIf="messages$ | async as messages; else empty">
+      <div class="messages__messages__header">
+        <div class="messages__messages__header__left">
+          <h3><svg-bot class="d-flex"></svg-bot><span>Sent messages</span></h3>
+          <p>{{ messages.length }} messages</p>
+        </div>
+        <div class="messages__messages__header__right">
+          <app-selector
+            [selectorData]="monthesOption"
+            (selectedValueChange)="filterByMonthSelector($event)"
+            [size]="'small'"
+            backgroundColor="#D2EEEB"
+            ><svg-schedule width="12" height="12" class="d-flex"></svg-schedule>
+          </app-selector>
+        </div>
+      </div>
+      <div class="messages__messages__window">
+        <ng-container *ngFor="let date of messagesByDate.keys()">
+          <div class="date">
+            <span>{{ date }}</span>
+          </div>
+          <app-message
+            *ngFor="let message of messagesByDate.get(date)"
+            [message]="message"
+          ></app-message>
+        </ng-container>
+      </div>
+    </ng-container>
+
+    <ng-template #empty>
+      <div class="empty">
+        <nz-spin [nzSpinning]="isLoadingMessages">
+          <span *ngIf="!isLoadingMessages">Messages not found</span>
+        </nz-spin>
+      </div>
+    </ng-template>
+  </div>
+</div>
+
+<app-f-a-q [guidList]="guidList"></app-f-a-q>

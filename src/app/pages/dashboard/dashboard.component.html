@@ -1,0 +1,29 @@
+<div class="dashboard">
+  <app-dashboard-header
+    [title]="'Dashboards'"
+    [btnText]="'Update Stats'"
+    [isLoading]="isLoading"
+    (handleEvent)="updateStats()"
+  >
+    <svg-update class="d-flex"></svg-update>
+  </app-dashboard-header>
+
+  <div class="dashboard__content" *ngIf="!isLoadingData; else sleketon">
+    <div class="dashboard__content__statistic">
+      <div
+        class="dashboard__content__statistic__cards"
+        *ngFor="let card of cardsInfo"
+      >
+        <app-statistic-card [cardInfo]="card"></app-statistic-card>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #sleketon>
+  <div class="mt-60">
+    <app-skeleton-statistic-cards></app-skeleton-statistic-cards>
+  </div>
+</ng-template>
+
+<app-f-a-q [guidList]="guidList"></app-f-a-q>

@@ -1,0 +1,27 @@
+<div class="group">
+  <app-page-header
+    [title]="'Group Insights'"
+    [btnText]="'Add group'"
+    (searchValue)="searchValue($event)"
+    (handleEvent)="openModal()"
+  >
+    <svg-plus class="d-flex"></svg-plus
+  ></app-page-header>
+  <div class="group__filter" [hidden]="!showFilter">
+    <app-selector
+      [selectorData]="monthesSelector"
+      (selectedValueChange)="filterByDate($event)"
+      [selectedValue]="selectedDate"
+    >
+      <svg-schedule class="d-flex"></svg-schedule>
+    </app-selector>
+  </div>
+  <app-groups-list [data]="groups" [isLoading]="isLoading"></app-groups-list>
+</div>
+
+<app-add-edit-modal
+  (createNewGroup)="createdNewGroup()"
+  [(isVisible)]="isVisibleModal"
+></app-add-edit-modal>
+
+<app-f-a-q [guidList]="guidList"></app-f-a-q>

@@ -1,0 +1,5 @@
+<div class="date-range">
+  <button class="date-range__pre date-btn" (click)="prevWeek.emit()"><svg-arrow class="d-flex"></svg-arrow></button>
+  <div class="date-range__range">{{dateOptions.start.label + ' - ' + dateOptions.end.label}}</div>
+  <button class="date-range__next date-btn" (click)="nextWeek.emit()"><svg-arrow class="d-flex"></svg-arrow></button>
+</div>

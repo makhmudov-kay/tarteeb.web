@@ -1,0 +1,46 @@
+@import url('../../../../assets/utils/_global.less');
+
+.statistic-card {
+    padding: 16px 24px;
+    background: #fff;
+    // max-width: 316px;
+    width: 100%;
+    border-radius: 16px;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+
+    &__title {
+        .font(#1B1D1F, Montserrat-Alt, 16px, 120%, 0.32px);
+        margin-bottom: 16px;
+    }
+
+    &__amount {
+        display: flex;
+        gap: 16px;
+        align-items: center;
+
+        &__num {
+            .font(#1B1D1F, Montserrat-Alt, 24px, 120%, 0.48px);
+        }
+
+        &__changes {
+            .font(#000, Lato, 16px, 120%, 0.32px);
+            margin-bottom: 8px;
+
+            &.green {
+                color: #379F41;
+            }
+
+            &.red {
+                color: #FFA69F;
+            }
+        }
+    }
+
+    &__description {
+        span {
+            .font(#7D7D7D, Lato, 16px, 120%, 0.32px);
+        }
+    }
+}

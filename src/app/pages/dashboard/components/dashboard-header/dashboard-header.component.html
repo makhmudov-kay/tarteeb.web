@@ -1,0 +1,22 @@
+<div class="invoice__header">
+  <h2 class="title">{{ title }}</h2>
+  <div class="invoice__header__search">
+  </div>
+  <button
+    class="btn-gradient"
+    (click)="handleEvent.emit()"
+    [disabled]="isLoading"
+  >
+    <ng-container *ngIf="isLoading; else content">
+      <span class="icon-loading">
+        <span nz-icon [nzType]="'loading'"></span>
+      </span>
+    </ng-container>
+
+    <ng-template #content>
+      <ng-content></ng-content>
+    </ng-template>
+
+    <span>{{ btnText }}</span>
+  </button>
+</div>

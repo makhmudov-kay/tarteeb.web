@@ -1,0 +1,39 @@
+<div
+  class="view-invoice"
+  *ngIf="invoiceInfo$ | async as invoiceInfo; else skeleton"
+>
+  <app-view-invoices-btn-group
+    [invoice]="invoice"
+    [(isVisiblePaymentModal)]="isVisiblePaymentModal"
+    [(isFullPay)]="isFullPay"
+    [isLoadingPay]="isLoadingPay"
+    [isLoadingDelete]="isLoadingDelete"
+    [paymentMethodOptions]="paymentMethodOptions"
+    [form]="form"
+    (cancelPaid)="cancelPaidInvoice($event)"
+    (submitPay)="submitPay()"
+    (deleteInvoice)="deleteInvoice($event)"
+  ></app-view-invoices-btn-group>
+  <div class="view-invoice__block">
+    <app-invoice-check
+      [userInvoiceInfo]="invoiceInfo"
+      [personalInfo]="user"
+    ></app-invoice-check>
+  </div>
+</div>
+
+<ng-template #skeleton>
+  <div class="skeleton">
+    <div class="skeleton__header">
+      <button routerLink="../" class="btn-group__back-btn">
+        <svg-dir-arrow class="d-flex"></svg-dir-arrow>
+      </button>
+
+      <div class="skeleton__actions__btn">
+        <div class="skeleton__actions__btn__first"></div>
+        <div class="skeleton__actions__btn__second"></div>
+      </div>
+    </div>
+    <div class="skeleton__block"></div>
+  </div>
+</ng-template>

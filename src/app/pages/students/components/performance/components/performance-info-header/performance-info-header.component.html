@@ -1,0 +1,36 @@
+<div class="info-header d-flex justify-content-between align-items-center">
+  <div class="info-header__user">
+    {{ student.firstName + " " + student.lastName }}
+  </div>
+  <div class="info-header__info">
+    <ul class="info-header__info__list">
+      <li class="info-header__info__list__item" *ngIf="group">
+        <svg-groups class="d-flex" color="#477AB5"></svg-groups>
+        <span>{{ group.name }}</span>
+      </li>
+      <li
+        class="info-header__info__list__item telegram"
+        nzTooltipPlacement="top"
+        nz-tooltip
+        [nzTooltipTitle]="
+          student.telegramUserId
+            ? 'Telegram account connected successfully'
+            : 'No telegram account connected'
+        "
+      >
+        <div class="telegram__text">
+          <svg-telegram class="d-flex"></svg-telegram>
+          <span>Telegram</span>
+        </div>
+        <div class="telegram-status">
+          <ng-container *ngIf="false; else error"
+            ><svg-check class="d-flex"></svg-check
+          ></ng-container>
+          <ng-template #error>
+            <svg-danger class="d-flex"></svg-danger>
+          </ng-template>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

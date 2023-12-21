@@ -1,0 +1,95 @@
+<div class="attendance">
+  <app-page-header
+    [title]="'Attendance & Progress Report'"
+    [btnText]="'Send'"
+    (searchValue)="searchValue($event)"
+    [(activeFilter)]="activeFilter"
+    [isLoading]="isLoadingBtn"
+    (handleEvent)="submitAttendance()"
+  >
+    <svg-telegraph class="d-flex"></svg-telegraph>
+  </app-page-header>
+  <div class="attendance__filter" [hidden]="!activeFilter">
+    <nz-alert
+      *ngIf="!lessonDaySelector.length"
+      nzShowIcon
+      nzType="info"
+      [nzMessage]="alertMessage"
+      [nzAction]="actionTemplate1"
+    ></nz-alert>
+    <app-selector
+      [selectorData]="lessonDaySelector"
+      [isLoading]="isLoadingLessonSelector"
+      [selectedValue]="selectedLessonDay"
+      (selectedValueChange)="filterByLesson($event)"
+    >
+      <svg-schedule class="d-flex"></svg-schedule>
+    </app-selector>
+    <app-selector
+      [selectorData]="groupSelector"
+      (selectedValueChange)="filterByGroup($event)"
+    >
+      <svg-groups class="d-flex"></svg-groups>
+    </app-selector>
+
+    <ng-template #actionTemplate1>
+      <button nz-button nzSize="small" nzType="link" (click)="isVisible = true">
+        Yes
+      </button>
+    </ng-template>
+    <ng-template #alertMessage>
+      <span class="attendance__filter__alert-message">
+        {{ groupName }} doesn't have any lessons for this week? Do you want to
+        create one for today?
+      </span>
+    </ng-template>
+  </div>
+
+  <div class="attendance__list">
+    <app-attendance-table
+      [data]="
+        attendance && attendance.StudentAttendances
+          ? attendance.StudentAttendances
+          : []
+      "
+      [isLoading]="isLoading"
+      (isAbsent)="toggleIsAbsent($event)"
+      [searchValue]="searchValueText"
+    ></app-attendance-table>
+  </div>
+</div>
+
+<ng-template #template>
+  <div class="ant-notification-notice-content">
+    <div class="ant-notification-notice-with-icon">
+      <span class="ant-notification-notice-icon">
+        <span
+          nz-icon
+          nzType="info-circle"
+          style="color: rgb(16, 142, 233)"
+        ></span>
+      </span>
+      <div class="ant-notification-notice-message">
+        Attendance already taken
+      </div>
+      <div class="ant-notification-notice-description">
+        Please, select a different lesson to prevent duplicate notifications to
+        parents
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<app-add-lesson
+  *ngIf="selectedRoomValue && selectedTeacherValue && selectedGroupValue"
+  [(isVisible)]="isVisible"
+  [groupSelector]="groupSelector"
+  [teacherSelector]="teachers"
+  [roomSelector]="rooms"
+  [selectedRoomValue]="selectedRoomValue"
+  [selectedTeacherValue]="selectedTeacherValue"
+  [selectedGroupValue]="selectedGroupValue"
+  (refresh)="getLessonsByGroup(selectedGroupValue)"
+></app-add-lesson>
+
+<app-f-a-q [guidList]="guidList"></app-f-a-q>

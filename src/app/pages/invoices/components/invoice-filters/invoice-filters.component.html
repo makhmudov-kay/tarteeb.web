@@ -1,0 +1,34 @@
+<div class="filters">
+  <div class="filters__bottom">
+    <app-radio-group
+      [radioOptions]="radioOptions"
+      [selectedOption]="selectedOption"
+      [selectedValue]="selectedValue"
+      (selectedOptionChange)="onChangeRadio($event)"
+    ></app-radio-group>
+
+    <div class="filters__bottom__paid-today">
+      <app-toggle-btn
+        [active]="activePaidToday"
+        (activeChange)="filterByPaidToday($event)"
+        [btnText]="'Paid today'"
+      ></app-toggle-btn>
+    </div>
+    <div class="f-grow d-flex justify-content-end">
+      <app-selector
+        [selectorData]="monthesSelector"
+        (selectedValueChange)="filterByDateSelector($event)"
+        [selectedValue]="selectedDate"
+      >
+        <svg-schedule class="d-flex"></svg-schedule>
+      </app-selector>
+    </div>
+    <app-selector
+      [selectorData]="groupIdOption"
+      [selectedValue]="groupIdSelected"
+      (selectedValueChange)="filterByGroupId($event)"
+    >
+      <svg-groups class="d-flex"></svg-groups>
+    </app-selector>
+  </div>
+</div>

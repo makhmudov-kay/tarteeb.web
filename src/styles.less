@@ -1,0 +1,420 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('./assets/utils/_global.less');
+@import url('./assets/utils/_variables.less');
+
+
+@font-face {
+    font-family: Lato;
+    src: url(./assets/fonts/Lato-Regular.ttf);
+}
+
+@font-face {
+    font-family: Montserrat-Bold;
+    src: url(./assets/fonts/Montserrat-Bold.ttf);
+}
+
+@font-face {
+    font-family: Montserrat-Alt;
+    src: url(./assets/fonts/MontserratAlternates-Bold.ttf);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin-bottom: 0;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+
+    li {
+        list-style: none;
+    }
+}
+
+a {
+    text-decoration: none;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.title {
+    .font(#1B1D1F, Montserrat-Alt, 24px, 120%, 0.48px);
+}
+
+.btn {
+    border-radius: @baseRadius;
+    background: #fff;
+    padding: @padding-base;
+    display: flex;
+    align-items: center;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: 0.4s;
+
+    svg {
+        path {
+            fill: #FBFBFB;
+        }
+    }
+
+    span {
+        .font(#FBFBFB, Montserrat-Alt, 14px, 120%, 0.28px);
+        margin-left: 40px;
+    }
+
+    &__light {
+        background: #EDF9FF;
+
+
+        &:hover {
+            background: darken(#EDF9FF, 10%);
+        }
+
+        span {
+            .font(#477AB5, Montserrat-Alt, 14px, 120%, 0.28px);
+        }
+
+        svg {
+            path {
+                fill: #477AB5;
+            }
+        }
+    }
+
+    &__main {
+        background: #0096FA;
+
+        &:hover {
+            background: darken(#0096FA, 10%);
+        }
+
+        svg {
+            path {
+                fill: #FBFBFB;
+            }
+        }
+    }
+
+    &__m-additional {
+        background: #477AB5;
+
+        &:hover {
+            background: darken(#477AB5, 10%);
+        }
+    }
+
+    &__default {
+        background: #FBFBFB;
+
+        &:hover {
+            background: darken(#FBFBFB, 10%);
+        }
+
+        span {
+            .font(#7D7D7D, Montserrat-Alt, 14px, 120%, 0.28px);
+        }
+
+        svg {
+            path {
+                fill: #7D7D7D;
+            }
+        }
+    }
+
+    &__grey {
+        background: #F2F2F2;
+
+        &:hover {
+            background: darken(#F2F2F2, 10%);
+        }
+
+
+        span {
+            .font(#7D7D7D, Montserrat-Alt, 14px, 120%, 0.28px);
+        }
+
+        svg {
+            path {
+                fill: #7D7D7D;
+            }
+        }
+    }
+}
+
+.btn-gradient {
+    border-radius: @baseRadius;
+    background: linear-gradient(135deg, #0096FA 0%, #43B97F 100%);
+    padding: @padding-base;
+    display: flex;
+    align-items: center;
+    border: none;
+    outline: none;
+    cursor: pointer;
+
+    span {
+        .font(#FBFBFB, Montserrat-Alt, 14px, 120%, 0.28px);
+        margin-left: 40px;
+    }
+}
+
+.r-90 {
+    transform: rotate(90deg);
+}
+
+.search-bar__date {
+    .ant-select-selection-item {
+        display: flex;
+        align-items: center;
+    }
+}
+
+.btn {
+    &__default {
+        padding: @padding-base;
+        border-radius: @baseRadius;
+        background: @white;
+        .font(@primary-color, Montserrat-Alt, 16px, 120%, 0.32px);
+        border: none;
+        outline: none;
+        cursor: pointer;
+        transition: 0.4s;
+
+        &:hover {
+            background: #D2EEEB;
+        }
+
+        &.active {
+            background: @primary-color;
+            color: @white;
+        }
+    }
+
+    &:disabled {
+        background: rgba(128, 128, 128, 0.414);
+        cursor: not-allowed;
+    }
+
+    .icon-loading {
+        //  position: absolute;
+        //  top: 50%;
+        //  left: 50%;
+        //  transform: translate(-50%, -50%);
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        margin: 0;
+
+        .anticon.anticon-loading {
+            margin: 0;
+            color: #fff;
+            font-size: 18px;
+        }
+    }
+}
+
+.ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
+    height: auto;
+}
+
+.selector {
+    .ant-select-selection-item::after {
+        content: none !important;
+    }
+
+    .ant-select-disabled.ant-select:not(.ant-select-customize-input) .ant-select-selector .custom-select {
+        background: rgba(128, 128, 128, 0.263) !important;
+        color: #fff !important;
+    }
+}
+
+.table-data {
+    .ant-table-thead>tr>th {
+        background: none;
+    }
+
+    .ant-table-thead>tr>th:not(:last-child):not(.ant-table-selection-column):not(.ant-table-row-expand-icon-cell):not([colspan])::before {
+        content: none;
+    }
+
+    .ant-table-column-title,
+    .ant-table-thead>tr>th {
+        .font(#0096FA, Montserrat-Alt, 16px, 120%, 0.32px);
+    }
+
+    .ant-table-column-sorter {
+        color: #0096FA;
+    }
+
+    .ant-table-column-sorters:hover .ant-table-column-sorter {
+        color: #0096FA;
+    }
+
+
+    .ant-table-thead>tr>th {
+        border-bottom: none;
+    }
+
+    .ant-table-tbody>tr>td {
+        border-bottom: none;
+    }
+
+    .ant-table-tbody>tr.ant-table-row:hover>td,
+    .ant-table-tbody>tr>td.ant-table-cell-row-hover {
+        background: #0096FA;
+        box-shadow: rgba(0, 0, 0, 0.28);
+        color: #fff;
+    }
+
+    .ant-table-tbody>tr>td {
+        .font(#7D7D7D, Montserrat-Alt, 14px, 120%, 0.28px);
+        // background: #F2F2F2;
+
+
+    }
+
+    .ant-table-tbody>tr {
+        &:nth-of-type(even) {
+            background: #F2F2F2;
+        }
+    }
+
+    .ant-table-row {
+        td:first-of-type {
+            border-radius: 16px 0 0 16px;
+        }
+
+        td:last-of-type {
+            border-radius: 0 16px 16px 0;
+        }
+    }
+
+    .ant-table tfoot>tr>td,
+    .ant-table tfoot>tr>th,
+    .ant-table-tbody>tr>td,
+    .ant-table-thead>tr>th {
+        padding: 16px 32px;
+    }
+
+    .ant-table-cell-fix-right,
+    .ant-table-cell-fix-left {
+        background: #fff !important;
+    }
+
+    tr.ant-table-row:hover>td.ant-table-cell-fix-right {
+        background: #0096FA !important;
+    }
+
+    tr.ant-table-row:hover>td.ant-table-cell-fix-left {
+        background: #0096FA !important;
+    }
+
+    .ant-table-tbody>tr {
+        &:nth-of-type(even) {
+            background: #F2F2F2;
+
+            .ant-table-cell-fix-right,
+            .ant-table-cell-fix-left {
+                background: #F2F2F2 !important;
+            }
+        }
+    }
+
+    &.attendance {
+
+        .ant-table-tbody>tr.ant-table-row:hover>td,
+        .ant-table-tbody>tr>td.ant-table-cell-row-hover {
+            background: inherit;
+            box-shadow: inherit;
+            color: inherit;
+        }
+    }
+
+    /* TODO RADIUS GROUP */
+}
+
+.attendance__filter {
+    .ant-alert {
+        height: 100%;
+        border-radius: @baseRadius;
+    }
+}
+
+.ant-modal-content {
+    border-radius: 32px !important;
+}
+
+
+.ant-form-item-label>label {
+    .font(#7D7D7D, Montserrat-Alt, 14px, 120%, 0.28px);
+}
+
+
+.step-content__phone {
+    .ant-input-group-addon {
+        width: 90px;
+        padding: 0;
+        border-radius: 16px 0 0 16px;
+        outline: none;
+        background: #D2EEEB;
+        border: none;
+        .font(#477AB5, Montserrat-Alt, 16px, 120%, 0.32px);
+    }
+
+    .ant-select,
+    .ant-select-arrow {
+        color: #477AB5;
+    }
+
+    .ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input) .ant-select-selector {
+        border: none;
+        box-shadow: none;
+    }
+
+    .ant-input-group-addon .ant-select.ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
+        border: none;
+    }
+
+    .ant-select-status-error.ant-select:not(.ant-select-disabled):not(.ant-select-customize-input) .ant-select-selector {
+        background: #D2EEEB;
+    }
+}
+
+.selector-padding-0 {
+    .ant-select:not(.ant-select-customize-input) .ant-select-selector {
+        padding: 0;
+    }
+}
+
+.modal-header {
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h3 {
+        .font(#000, Montserrat-Alt, 24px, 120%, 0.48px);
+        background: -webkit-linear-gradient(90deg, #0096FA 0%, #43B97F 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    span {
+        cursor: pointer;
+    }
+}
+
+
+.small {
+    .ant-select-single:not(.ant-select-customize-input) .ant-select-selector {
+        padding: 0 !important;
+    }
+}

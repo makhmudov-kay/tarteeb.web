@@ -1,0 +1,69 @@
+<div
+  class="selector"
+  [ngClass]="{
+    anyColor: backgroundColor && size !== 'small',
+    nzWidth: nzWidth,
+    small: size === 'small'
+  }"
+>
+  <nz-select
+    [ngModel]="
+      selectedValue
+        ? selectedValue
+        : selectorData && selectorData.length
+        ? selectorData[0].value
+        : ''
+    "
+    (ngModelChange)="selectedValueChange.emit($event)"
+    nzBorderless
+    [nzDisabled]="isDisabled"
+    [nzLoading]="isLoading"
+    [nzSuffixIcon]="arrow"
+    [nzCustomTemplate]="groupeSelect"
+    [nzShowArrow]="false"
+  >
+    <nz-option
+      *ngFor="let option of selectorData"
+      [nzValue]="option.value"
+      [nzLabel]="option.label"
+    ></nz-option>
+    <nz-option
+      *ngIf="default"
+      [nzLabel]="defaultText"
+      nzValue="Default"
+      nzHide
+    ></nz-option>
+  </nz-select>
+</div>
+
+<ng-template #arrow>
+  <svg-arrow class="d-flex r-90"></svg-arrow>
+</ng-template>
+
+<!-- GROUP SELECT TEMPLATE -->
+<ng-template #groupeSelect let-selected>
+  <div
+    class="custom-select group"
+    [ngStyle]="{
+      background: backgroundColor,
+      border: backgroundColor && '2px solid ' + backgroundColor,
+    }"
+    [ngClass]="{small: size === 'small',}"
+  >
+    <span><ng-content></ng-content></span>
+    <span
+      class="custom-select__text"
+      [ngStyle]="{
+        color: backgroundColor && '#fff' && size !== 'small',
+      }"
+      >{{ selected.nzLabel }}</span
+    >
+    <span class="group__arrow"
+      ><svg-arrow
+        [width]="size === 'small' ? '7' : '9'"
+        [height]="size === 'small' ? '12' : '16'"
+        class="d-flex"
+      ></svg-arrow
+    ></span>
+  </div>
+</ng-template>

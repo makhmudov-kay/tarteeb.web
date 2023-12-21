@@ -1,0 +1,18 @@
+<div class="faq" (click)="openList()">
+  <span>?</span>
+
+  <ul class="faq-list" [ngClass]="{isOpen}">
+    <li
+      class="faq-list__item"
+      *ngFor="let i of guidList"
+      (click)="openModal(i)"
+    >
+      <span>{{ i.name }}</span>
+    </li>
+  </ul>
+</div>
+
+<app-video-guid-modal
+  [(isVisible)]="isVisible"
+  [data]="guide"
+></app-video-guid-modal>

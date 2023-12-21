@@ -1,0 +1,101 @@
+@import url('../../../../../assets/utils/_global.less');
+
+.attendance-modal__content {
+    &__input {
+        border-radius: 16px;
+        padding: 13px;
+        .font(#7D7D7D, Montserrat-Alt, 16px, 120%, 0.32px);
+
+        &.modified {
+            border-radius: 0 16px 16px 0;
+        }
+    }
+
+    &__hours {
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+
+        .picker {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-direction: column;
+            height: 101px;
+
+            span {
+                .font(#7D7D7D, Montserrat-Alt, 16px, 120%, 0.32px);
+            }
+
+            &__time {
+                border-radius: 16px;
+                border: 1px solid #7D7D7D;
+                background: #FBFBFB;
+                padding: 11px;
+                .font(#7D7D7D, Montserrat-Alt, 16px, 120%, 0.32px);
+
+                &.validationError {
+                    border-color: tomato;
+                }
+            }
+        }
+    }
+
+    &__selectors {
+        margin-top: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    &__repeated {
+        padding: 10px 0;
+        height: 199px;
+    }
+
+    &__select-time {
+        padding: 10px 0;
+        height: 135px;
+    }
+}
+
+.modal-footer {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+
+    button {
+        border-radius: 16px;
+        padding-left: 36px;
+        padding-right: 36px;
+        font-family: Montserrat-Alt;
+        font-size: 14px;
+
+        &[type="link"] {
+            border: none;
+        }
+    }
+
+    &__actions-btn {
+        display: flex;
+        gap: 20px;
+    }
+}
+
+.validationError {
+    border: 1px solid tomato;
+}
+
+.error {
+    color: tomato;
+    text-align: center;
+    .font(tomato, Montserrat-Alt, 10px, 120%, 0.18px);
+}
+
+.ant-picker-status-error.ant-picker,
+.ant-picker-status-error.ant-picker:not([disabled]):hover {
+    border-color: tomato;
+}

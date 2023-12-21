@@ -1,0 +1,24 @@
+@import url('../../../../../assets/utils/_global.less');
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    &__item {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+
+        &__title {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            .font(#FBFBFB, Montserrat-Alt, 16px, 120%, 0.32px);
+        }
+
+        &__info {
+            .font(#FBFBFB, Lato, 16px, 120%, 0.32px);
+        }
+    }
+}

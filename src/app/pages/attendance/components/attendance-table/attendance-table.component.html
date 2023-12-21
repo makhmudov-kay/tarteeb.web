@@ -1,0 +1,59 @@
+<div class="table-data attendance">
+  <nz-table
+    #rowSelectionTable
+    [nzShowPagination]="true"
+    [nzPageSize]="50"
+    nzShowSizeChanger
+    [nzData]="data | SearchObject : searchValue"
+    [nzLoading]="isLoading"
+    (nzCurrentPageDataChange)="onCurrentPageDataChange($event)"
+  >
+    <thead>
+      <tr>
+        <th nzWidth="70px">№</th>
+        <th>Full name</th>
+        <th>Attendance</th>
+        <th nzWidth="120px">Score</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of rowSelectionTable.data; let id = index">
+        <td>
+          {{
+            (rowSelectionTable.nzPageIndex - 1) * rowSelectionTable.nzPageSize +
+              id +
+              1
+          }}
+        </td>
+        <td>
+          {{ data.Student.firstName + " " + data.Student.lastName }}
+        </td>
+        <td>
+          <button
+            nz-button
+            class="btn-is-present"
+            [nzType]="!data.IsAbsent ? 'primary' : 'default'"
+            [nzDanger]="data.IsAbsent"
+            (click)="toggleIsAbsent({ IsAbsent: !data.IsAbsent, Id: data.Id })"
+          >
+            {{ data.IsAbsent ? "Absent" : "Present" }}
+          </button>
+        </td>
+        <td>
+          <input nz-input [(ngModel)]="data.Score.Grade" type="number" />
+        </td>
+        <td>
+          <textarea
+            [(ngModel)]="data.Score.EffortLink"
+            nz-input
+            placeholder="anything you'd like to inform"
+            name="notes"
+            cols="30"
+            rows="1"
+          ></textarea>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

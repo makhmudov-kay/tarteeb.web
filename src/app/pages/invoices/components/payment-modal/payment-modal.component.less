@@ -1,0 +1,155 @@
+@import url('../../../../../assets/utils/_global.less');
+
+.modal {
+    &-header {
+        margin-bottom: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        h3 {
+            .font(#000, Montserrat-Alt, 24px, 120%, 0.48px);
+            background: -webkit-linear-gradient(90deg, #0096FA 0%, #43B97F 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        span {
+            cursor: pointer;
+        }
+    }
+
+    &-content {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        &__info {
+            background: #477AB5;
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+
+            p {
+                .font(#fff, Montserrat-Alt, 14px, 120%, 0.24px);
+                display: flex;
+                justify-content: space-between;
+
+                span {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                }
+            }
+        }
+
+        &__inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+
+            &__validation {
+                display: flex;
+                justify-content: flex-end;
+                opacity: 0;
+
+                &.opacity {
+                    opacity: 1;
+                }
+
+                .error {
+                    .font(tomato, Montserrat-Alt, 10px, 120%, 0.18px);
+                }
+            }
+
+            label {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                input[type='radio'] {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    appearance: none;
+                }
+
+                .checkmark-radio {
+                    display: block;
+                    width: 24px;
+                    height: 24px;
+                    border-radius: 50%;
+                    box-sizing: border-box;
+                    border: 2px solid #477AB5;
+                    display: flex;
+                    align-items: center;
+
+                    span {
+                        display: none;
+                    }
+                }
+
+                input[type='radio']:checked~.checkmark-radio {
+                    border: none;
+
+                    span {
+                        display: block;
+                    }
+                }
+
+                .label {
+                    &-radio {
+                        cursor: pointer;
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+
+                        &__text {
+                            .font(#7D7D7D, Montserrat-Alt, 14px, 120%, 0.24px);
+                        }
+                    }
+
+                    &-input {
+                        input {
+                            max-width: 125px;
+                            width: 100%;
+                            border-radius: 16px;
+                            padding: 13px;
+                            .font(#7D7D7D, Montserrat-Alt, 14px, 120%, 0.24px);
+                        }
+                    }
+
+                    &-info {
+                        .font(#7D7D7D, Montserrat-Alt, 14px, 120%, 0.24px);
+                    }
+                }
+            }
+        }
+
+        &__selector {
+            p {
+                .font(#7D7D7D, Montserrat-Alt, 14px, 120%, 0.24px);
+                margin-bottom: 10px;
+                // text-align: center;
+            }
+        }
+    }
+
+    &-footer {
+        margin-top: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 15px;
+
+        button {
+            border-radius: 16px;
+            padding-left: 36px;
+            padding-right: 36px;
+            font-family: Montserrat-Alt;
+            font-size: 14px;
+        }
+    }
+}

@@ -1,0 +1,39 @@
+<div class="invoice">
+  <app-page-header
+    [title]="'Invoice Management'"
+    [btnText]="'Notify unpaid'"
+    (handleEvent)="notifyUnpaid()"
+    (searchValue)="searchValue($event)"
+    [isLoading]="isLoadingBtn"
+  >
+    <svg-bell class="d-flex"></svg-bell
+  ></app-page-header>
+  <app-invoice-filters
+    [hidden]="!showFilter"
+    (dailyFilter)="filterByDaily($event)"
+    (statusFilter)="filterByStatus($event)"
+    (dateFilter)="filterByDate($event)"
+    (groupFilter)="filterByGroupId($event)"
+    [monthesSelector]="monthesSelector"
+  ></app-invoice-filters>
+  <app-table-data
+    [data]="invoices"
+    [isLoading]="isLoading"
+    (openModal)="openPayModal($event)"
+    (cancelPaidInvoice)="cancelPaidInvoice($event)"
+    (deleteInvoice)="deleteInvoice($event)"
+  ></app-table-data>
+</div>
+
+<app-payment-modal
+  [invoice]="invoice"
+  [(isVisible)]="isVisiblePaymentModal"
+  [(isFullPay)]="isFullPay"
+  [form]="form"
+  (onSubmit)="submitPay()"
+  [paymentMethodOptions]="paymentMethodOptions"
+  [isLoading]="isLoadingPay"
+></app-payment-modal>
+
+<app-f-a-q [guidList]="guidList"></app-f-a-q>
+

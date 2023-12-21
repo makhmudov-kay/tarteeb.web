@@ -1,0 +1,30 @@
+<div class="performance-info">
+  <div class="performance-info__header">
+    <app-performance-info-header
+      [student]="studentPerformance.student"
+      [group]="group"
+    ></app-performance-info-header>
+  </div>
+
+  <div class="performance-info__cards">
+    <div class="performance-info__cards__item" *ngFor="let card of cardsInfo">
+      <app-statistic-card [cardInfo]="card"></app-statistic-card>
+    </div>
+  </div>
+
+  <div class="performance-info__wrapper">
+    <div class="performance-info__chart">
+      <div class="performance-info__chart__fake">
+        <img src="./assets/images/analytics.png" alt="image" />
+      </div>
+      <h3>Coming soon</h3>
+    </div>
+    <div class="performance-info__messages">
+      <app-messages-performance
+        [messages]="messages"
+        [messageCount]="messageCount"
+        [monthesOption]="monthesOption"
+      ></app-messages-performance>
+    </div>
+  </div>
+</div>

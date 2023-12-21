@@ -1,0 +1,27 @@
+@import url('../../../../../assets/utils/_global.less');
+
+.repeated-day-selector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+    .date-picker {
+        max-width: 450px;
+        width: 100%;
+        border-radius: 16px;
+        border: 1px solid #7D7D7D;
+        background: #FBFBFB;
+        padding: 11px;
+        .font(#7D7D7D, Montserrat-Alt, 16px, 120%, 0.32px);
+    }
+
+    .week-days {
+        p {
+            text-align: center;
+            margin-bottom: 10px;
+            .font(#7D7D7D, Montserrat-Alt, 16px, 120%, 0.32px);
+        }
+    }
+}

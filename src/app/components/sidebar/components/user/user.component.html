@@ -1,0 +1,41 @@
+<div
+  class="user"
+  [ngClass]="{isCollapsed}"
+  (clickOutside)="isUserMenuVisible = false"
+>
+  <div class="user__wrapper" (click)="toggleVisible($event)">
+    <div class="user__avatar">
+      <img
+        src="https://cdn.pixabay.com/photo/2021/02/27/16/25/woman-6055084_1280.jpg"
+        alt="avatar"
+      />
+    </div>
+    <div class="user__info">
+      <h4>{{user.FirstName}}</h4>
+      <p>{{user.Role}}</p>
+    </div>
+    <!-- <span class="badge">{{ badgeCount > 9 ? "9+" : badgeCount }}</span> -->
+  </div>
+
+  <ul class="user__menu" [ngClass]="{ visible: isUserMenuVisible }">
+    <li
+      class="user__menu__item"
+      [routerLink]="['/profile']"
+      routerLinkActive="active"
+    >
+      <svg-profile class="d-flex"></svg-profile><span>A.I.ShA - Assistant</span>
+    </li>
+    <li
+      class="user__menu__item"
+      [routerLink]="['/notifications']"
+      routerLinkActive="active"
+    >
+      <svg-bell class="d-flex"></svg-bell>
+      <span>Notifications</span>
+    </li>
+    <li class="user__menu__item" (click)="logout()">
+      <svg-log-out class="d-flex"></svg-log-out>
+      <span>Log out</span>
+    </li>
+  </ul>
+</div>
